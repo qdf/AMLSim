@@ -1,4 +1,4 @@
-# AMLSim Sample Use
+#AMLSim-Sample-Use
 ## Transaction Simulator (Java)
 
 ```bash
