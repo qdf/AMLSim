@@ -63,14 +63,19 @@ Random seed value
 ```
 seed = 0
 ```
+### Individual transaction amounts, currently uses the preset values from the original AMLSim library. Need to formulate good limits to these based more realistic amounts. Currently, transaction amounts are set within scripts/transaction_graph_generator.py where a value is choosen between the min and max set here uniformly. Additionally need to see if a uniform distribution is the right option here based on real data.
 Minimum individual transaction amount, default is 1
 ```
 default_min_amount = 1
 ```
-Maximum individual transaction amount
+Maximum individual transaction amount, default is 10000
+```
 default_max_amount = 10000
-Total number of simulation steps
+```
+Total number of simulation steps, preset is 200
+```
 total_step = 200
+```
 ## Base
 
 ## HighRisk
