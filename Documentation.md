@@ -1,7 +1,7 @@
 # Outline
 
 * [AMLSim Sample Use](#AMLSim-Sample-Use)
-* [Simulation Properties](#prop.ini-Documentation)
+* [Simulation Properties](#Simulation-Properties)
 
 ---
 
@@ -64,7 +64,8 @@ sh scripts/clean_logs.sh
 ```
 ---
 
-# prop.ini-Documentation
+# Simulation-Properties
+All properties within the prop.ini file
 
 ---
 
