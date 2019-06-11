@@ -88,7 +88,11 @@ Total number of simulation steps, preset is 200. **Is 200 enough?**
 total_step = 200
 ```
 ## Base
-Accounts with larger degree than this threshold will be selected as alert accounts. **Is this a good rule to have? Is having a large degree producing large amounts of false alerts? When need to check the accuracy of this rule**
+Accounts with larger degree than this threshold will be selected as alert accounts. 
+Questions:
+* **Is this a good rule to have?** 
+* **Is having a large degree producing large amounts of false alerts?**
+* **Need to check the accuracy of this rule**
 ```
 degree_threshold = 10
 ```
@@ -99,7 +103,8 @@ business = ""
 countries = ""
 ```
 ## InputFile
-Input file and directory path. Currenlty set to one of the samples within the AMLSim repo. Can use this for now, but would be good to incorporate our generated data into this. **Need to build a script that formats our data in the expected format of these examples**
+Input file and directory path. Currenlty set to one of the samples within the AMLSim repo. Can use this for now, but would be good to incorporate our generated data into this. 
+**Need to build a script that formats our data in the expected format of these examples**
 ```
 directory = paramFiles/1m
 alertPattern = alertPatterns.csv
