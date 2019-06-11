@@ -1,6 +1,7 @@
 # Outline
 
 * [AMLSim Sample Use](#AMLSim-Sample-Use)
+* [Simulation Properties](#Simulation-Properties)
 * [Graph Generation Properties](#Graph-Generation-Properties)
 * [Transaction Graph Generator](#Transaction-Graph-Generator)
 
@@ -63,6 +64,35 @@ python scripts/convert_logs.py convert.ini outputs/sample/sample_log.csv
 ```bash
 sh scripts/clean_logs.sh
 ```
+
+---
+# Simulation Properties
+
+All properties within the amlsim.properties file
+
+---
+
+## PaySim parameters
+Notes from AMLSim mention these are to be removed
+
+```
+nrOfMerchants=34749
+debugFlag=0
+saveToDbFlag=0
+saveNetwork=0
+clientBeta=0
+fraudProbability=0.0
+numFraudsters=1000
+transferLimit=20000000000
+logPath=outputs/
+paramFileHistory=//outputs//ParamFileHistory
+parameterFilePath=//paramFiles//AggregateTransaction.csv
+transferMaxPath=//paramFiles//transferMax.csv
+balanceHandler=//paramFiles//initialBalanceClients.csv
+transferFreqMod=//paramFiles//transferFreq4Mod.csv
+transferFreqModInit=//paramFiles//transferFreq4ModInit.csv
+```
+
 ---
 
 # Graph Generation Properties
