@@ -1,4 +1,11 @@
-#AMLSim-Sample-Use
+# Outline
+
+[AMLSim Sample Use](#AMLSim-Sample-Use)
+[Simulation Properties](#prop.ini-Documentation)
+
+---
+
+# AMLSim-Sample-Use
 ## Transaction Simulator (Java)
 
 ```bash
@@ -57,7 +64,7 @@ sh scripts/clean_logs.sh
 ```
 ---
 
-# prop.ini Documentation
+# prop.ini-Documentation
 
 ---
 
