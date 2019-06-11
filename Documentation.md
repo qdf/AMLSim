@@ -55,3 +55,18 @@ python scripts/convert_logs.py convert.ini outputs/sample/sample_log.csv
 ```bash
 sh scripts/clean_logs.sh
 ```
+
+# prop.ini Documentation
+
+## General
+
+## Base
+
+## HighRisk
+
+## InputFile
+
+## OutputFile
+
+## PlotFile
+
