@@ -59,7 +59,18 @@ sh scripts/clean_logs.sh
 # prop.ini Documentation
 
 ## General
-
+Random seed value
+```
+seed = 0
+```
+Minimum individual transaction amount, default is 1
+```
+default_min_amount = 1
+```
+Maximum individual transaction amount
+default_max_amount = 10000
+Total number of simulation steps
+total_step = 200
 ## Base
 
 ## HighRisk
