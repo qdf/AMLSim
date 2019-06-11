@@ -1,7 +1,8 @@
 # Outline
 
 * [AMLSim Sample Use](#AMLSim-Sample-Use)
-* [Simulation Properties](#Simulation-Properties)
+* [Graph Generation Properties](#Graph-Generation-Properties)
+* [Transaction Graph Generator](#Transaction-Graph-Generator)
 
 ---
 
@@ -64,7 +65,7 @@ sh scripts/clean_logs.sh
 ```
 ---
 
-# Simulation Properties
+# Graph Generation Properties
 All properties within the prop.ini file
 
 ---
@@ -131,3 +132,12 @@ count = count.png
 clustering = cc.png
 diameter = diameter.png
 ```
+
+---
+
+# Transaction Graph Generator
+Documentation of the python script transaction_graph_generator.py within the scripts directory.
+
+---
+
+
