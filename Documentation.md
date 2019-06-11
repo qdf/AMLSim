@@ -1,7 +1,7 @@
 # Outline
 
-*[AMLSim Sample Use](#AMLSim-Sample-Use)
-*[Simulation Properties](#prop.ini-Documentation)
+* [AMLSim Sample Use](#AMLSim-Sample-Use)
+* [Simulation Properties](#prop.ini-Documentation)
 
 ---
 
