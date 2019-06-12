@@ -1,9 +1,16 @@
 # Outline
 
+* [AMLSim Overview](#AMLSim-Overview)
 * [AMLSim Sample Use](#AMLSim-Sample-Use)
 * [Simulation Properties](#Simulation-Properties)
 * [Graph Generation Properties](#Graph-Generation-Properties)
 * [Transaction Graph Generator](#Transaction-Graph-Generator)
+
+---
+# AMLSim Overview
+---
+
+![alt text](https://github.com/qdf/AMLSim/blob/master/AMLSim%20Overview.png "AMLSim Java object simple overview")
 
 ---
 
