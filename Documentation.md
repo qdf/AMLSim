@@ -9,8 +9,14 @@
 ---
 # AMLSim Overview
 ---
-
+## Java Object Simple Overview
 ![alt text](https://github.com/qdf/AMLSim/blob/master/AMLSim%20Overview.png "AMLSim Java object simple overview")
+
+The AMLSim object extends an existing inherentence structure within PaySim, by first extending ParameterizedPaySim. PaySim uses the [Mason](https://cs.gmu.edu/~eclab/projects/mason/) Java library to help build Agent-Based Simulations through extending the SimState object. Within SimState is where the tasks are handled through the Schedule object. The schedule object takes in any object that implements the Steppable interface (which the Client superobject does), where a function called step will be called from the scheduler. 
+
+AMLSim also builds up its specialized objects from the client superobject within PaySim. These are the objects acting as the Agents. FraudAccount extends Account, which extends Client. Accounts handle the transactions through an AbstractTransactionModel.
+
+Events within the scheduler are handled as they are inputted, as the scheduler is using a heap to gather the next event. Clients, once called to step by the scheduler, will then enact their next action where an AbstractTransactionModel will assist with handling the transaction.
 
 ---
 
