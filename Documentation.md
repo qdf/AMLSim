@@ -5,6 +5,7 @@
 * [Simulation Properties](#Simulation-Properties)
 * [Graph Generation Properties](#Graph-Generation-Properties)
 * [Transaction Graph Generator](#Transaction-Graph-Generator)
+* [Build Transaction Types](#How-to-build-fraud-transaction-types)
 * [Issues/Concerns](#Issues-Concerns)
 ---
 # AMLSim Overview
@@ -185,6 +186,27 @@ Documentation of the python script transaction_graph_generator.py within the scr
 
 ---
 
+# How to build fraud transaction types
+
+---
+
+
+
 # Issues Concerns
 
 ---
+
+## Random Assumptions
+Many of the processes or decisions being made throughout the simulation is random, i.e. use a uniform distribution to choose various features or properties of the agents.
+
+Found random uses:
+* Agent start step (within Account)
+* Amount of cash transactions (within CashInModel and CashOutModel)
+
+## Simulation Decisions
+Hard coded decision are also littered throughout the sim, these need to have valid justifications as to why they are set.
+
+Found hard coded values:
+* Model transactions are the balance spread out to the number of destinations (this can be seen within any object that extends the AbstractTransactionModel, best seen in FanIn and FanOutTransaction)
+* Default transaction interval is set to 10 (seen in AbstractTransactionModel)
+* Flunctuation of transactions is set to 2 (seen in AbstractTransactionModel)
