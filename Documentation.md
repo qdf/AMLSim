@@ -18,6 +18,8 @@ AMLSim also builds up its specialized objects from the client superobject within
 
 Events within the scheduler are handled as they are inputted, as the scheduler is using a heap to gather the next event. Clients, once called to step by the scheduler, will then enact their next action where an AbstractTransactionModel will assist with handling the transaction.
 
+For fraud type of transactions they are handled with the classes within the amlsim.model.fraud module. Each one handles transactions based on the type of Graphical configuration set for the fraud account. For normal accounts, transactions are handled through the objects within the amlsim.model.normal depending on the model type.
+
 ---
 
 # AMLSim Sample Use
