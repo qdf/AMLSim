@@ -196,6 +196,8 @@ Normal transactions are those enacted by agents who are Not considered to be fra
 ### SingleTransactionModel
 *Object Location: amlsim.model.normal.SingleTransactionModel*
 
+![alt text](https://user-images.githubusercontent.com/7017528/51157051-86277b80-18c1-11e9-930a-e2f763f446f9.png "Single Transaction Normal")
+
 Conducts a single transaction at a random time point (computed through uniformly random distribution) to a random destination of that account. Amount is determined by the balance of the account.
 
 ### FanOutTransactionModel
