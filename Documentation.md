@@ -200,6 +200,14 @@ Normal transactions are those enacted by agents who are Not considered to be fra
 
 Conducts a single transaction at a random time point (computed through uniformly random distribution) to a random destination of that account. Amount is determined by the balance of the account.
 
+AMLSim TODO List for updating single transactions:
+Need to answer the following questions and update this model
+
+* In the case of individual persons, people buy living goods every day with a debit card or credit card, send a living cost to their family with WIRE transaction on a monthly basis. There should be recurring behaviors.
+* In the case of business accounts, the amount should be larger than individual accounts. In the case of car dealers, they buy used cars and re-sell them. In that case, their transaction amount is larger and might be fluctuated based on their business situations.
+* In summary, each transaction amount and transaction frequency vary depending on whether it is individual or business.
+
+
 ### FanOutTransactionModel
 *Object Location: amlsim.model.normal.FanOutTransactionModel*
 
