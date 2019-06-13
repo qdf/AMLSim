@@ -309,7 +309,8 @@ Building a new transaction type can be done through the following (**CAUTION: Th
 3. Add transaction type to the transaction model IDs within the AbstractTransactionModel, make sure there is a distinguishable name for this new transaction (try to make it stand out compared to others, i.e. don't name it forward...). If you are adding a Fraud transaction model, then add this to the FraudTransaction type and don't add to the AbstractTransactionModel.
 4. Add transaction case to the Account or FraudAccount class (determined by if you are making a Fraud transaction type or Normal transaction type). This is within each constructor, you should see a switch statement with other transaction types being initialized.
 5. Add transaction type to the Python script transaction_graph_generator.py within the self.alert_types dictionary in the __init__ function of the TransactionGenerator. 
-6. Done!
+6. Build the subgraph within the add_alert_pattern function, first add a conditional with pattern_type == "<type_name>", then construct a subgraph in a similar fashion to existing pattern types (fan_in, fan_out, and bipartite are good simple examples, look at dense, mixed, stack, and cycle for more complex examples).
+6. Done (**Need to verify this**)!
 
 ---
 
