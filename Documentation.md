@@ -203,20 +203,28 @@ Conducts a single transaction at a random time point (computed through uniformly
 ### FanOutTransactionModel
 *Object Location: amlsim.model.normal.FanOutTransactionModel*
 
+![alt text](https://user-images.githubusercontent.com/7017528/51157052-86277b80-18c1-11e9-8734-cc06ec9f6883.png "FanOut Transaction Normal")
+
 Conducts multiple transaction from one account to all destinations listed within that account. The amount is determined through the balance divided by the number of destinations. This is only enacted if the step within the simulation is determined to be a valid step for that account (determined through randomization of generateDiff function within the AbstractTransactionModel object).
 
 ### FanInTransactionModel
 *Object Location: amlsim.model.normal.FanInTransactionModel*
+
+![alt text](https://user-images.githubusercontent.com/7017528/51157053-86277b80-18c1-11e9-9b60-e2fb7c1e0860.png "FanIn Transaction Normal")
 
 Conducts multiple transactions from multiple accounts to one destination listed within that account (inverse of FanOutTransactionModel). Amount is determined through dividing the total amount of the accounts from the sending accounts and dividing that by the number of destinations (primarily will be 1, haven't seen a case otherwise yet). 
 
 ### MutualTransactionModel
 *Object Location: amlsim.model.normal.MutualTransactionModel*
 
+![alt text](https://user-images.githubusercontent.com/7017528/51157054-86c01200-18c1-11e9-920e-c3df99ea2e13.png "Mutual Transaction Normal")
+
 Conducts a reciprocal transaction (transaction previously made to this account). Amount is determined to be the account balance. Transactions only occur if the step in the simulation is determined to be a valid step. Valid steps are computed through taking the current step of the simulation minus the start step of the account (typically a range of -10 to 0 as this is randomly determined), then the modulus of that value by the INTERVAL (INTERVAL is hard coded to 10). If that value is Not equal to 0, then the step is considered valid (steps are only invalid 1 in every 10 steps, as set by the INTERVAL).  
 
 ### ForwardTransactionModel
 *Object Location: amlsim.model.normal.ForwardTransactionModel*
+
+![alt text](https://user-images.githubusercontent.com/7017528/51157055-86c01200-18c1-11e9-943f-f7885c5f4085.png "Forward Transaction Normal")
 
 Conducts a simple transaction to all accounts listed as a destination within the account. The documentation lists this type as conducting a transaction after recieving a transaction from another account, however the implementation doesn't seem to follow through this (**Need to verify this**). Transactions only occur if the step in the simulation is determined to be a valid step. Valid steps are computed through taking the current step of the simulation minus the start step of the account (typically a range of -10 to 0 as this is randomly determined), then the modulus of that value by the INTERVAL (INTERVAL is hard coded to 10). If that value is equal to 0, then the step is considered valid (steps are only valid 1 in every 10 steps, as set by the INTERVAL).
 
@@ -224,6 +232,8 @@ Only difference between this transaction model and the SingleTransactionModel is
 
 ### PeriodicalTransactionModel
 *Object Location: amlsim.model.normal.PeriodicalTransactionModel*
+
+![alt text](https://user-images.githubusercontent.com/7017528/51157056-86c01200-18c1-11e9-8d78-1f06df968f06.png "Periodic Transaction Normal")
 
 Conducts scheduled transactions from one account to others as set by a PERIOD hard coded value. PERIOD is used to check if the simulation is in a valid step to conduct the transaction. While the documentation lists this type as conducting sending money to neighbors periodically, the code doesn't seem to be conducting anything that different from a Mutual or Forward TransactionModel, except for the number of destinations (**Need to verify this**). Valid steps are computed through a similar function as previous TransactionModels, however instead this function uses PERIOD instead of INTERVAL (both are set to 10 though).
 
@@ -244,20 +254,28 @@ Main class to handle Fraud transaction types.
 ### BipartiteTransactionModel
 *Object Location: amlsim.model.fraud.BipartiteTransactionModel*
 
+![alt text](https://camo.githubusercontent.com/a8c0947f94abe81776a32ce880e5107aa96315c2/68747470733a2f2f64326d787565667165616137736a2e636c6f756466726f6e742e6e65742f735f333743433344443744303435344436433433373939353332354136433538424142413135414337454335383445333136303030333633314445374444333735455f313534363835363138373135365f696d6167652e706e67 "Bipartite Transaction Fraud")
+
 Conducts a fraud transaction between the list of accounts within an Alert group. The first half of the list of members within the Alert group are considered the senders and the second half is the receivers. Amounts are determined at random from the simulation object (which has set minimums and maximums for transctions). 
 
 ### FanOutTransactionModel
 *Object Location: amlsim.model.fraud.FanOutTransactionModel*
+
+![alt text](https://camo.githubusercontent.com/ba715a70e51e837309b91cd57e5c81a5c8ac57b7/68747470733a2f2f64326d787565667165616137736a2e636c6f756466726f6e742e6e65742f735f333743433344443744303435344436433433373939353332354136433538424142413135414337454335383445333136303030333633314445374444333735455f313534363835363036303831395f696d6167652e706e67 "FanOut Transaction Fraud")
 
 Conducts a fraud transaction from one account to many accounts. Accounts sent to are determined by those within the Alert group. The amount is determined randomly through the simulation object and then split to all destination accounts. This transaction model uses a private scheduler to determine the simulation steps in which these transactions occur. There are three types of scheudling: *SIMULATNEOUS* (Conduct all transactions within the same step), *FIXED_INTERVAL* (Conduct transactions sequentially through a computed interval or batch, order is determined through order within Alert list of members), *RANDOM_RANGE* (Conducts transactions randomly as determined through a random function). Amounts are determined at random from the simulation object (which has set minimums and maximums for transctions). 
 
 ### FanInTransactionModel
 *Object Location: amlsim.model.fraud.FanInTransactionModel*
 
+![alt text](https://camo.githubusercontent.com/1f9ef1295218020d9e3d4a27a34cc6ef365e2636/68747470733a2f2f64326d787565667165616137736a2e636c6f756466726f6e742e6e65742f735f333743433344443744303435344436433433373939353332354136433538424142413135414337454335383445333136303030333633314445374444333735455f313534363835363039373632305f696d6167652e706e67 "FanIn Transaction Fraud")
+
 Conducts a fraud transaction from multiple accounts to one account. Accounts involved are those within the same Alert group. This also contains a private scheduler for when such transaction occur. There are three types of scheudling: *SIMULATNEOUS* (Conduct all transactions within the same step), *FIXED_INTERVAL* (Conduct transactions sequentially through a computed interval or batch, order is determined through order within Alert list of members), *RANDOM_RANGE* (Conducts transactions randomly as determined through a random function). Amounts are determined at random from the simulation object (which has set minimums and maximums for transctions). 
 
 ### CycleTransactionModel
 *Object Location: amlsim.model.fraud.CycleTransactionModel*
+
+![alt text](https://camo.githubusercontent.com/cc5bbe727a7f5104f3acb2d1f6dfc8d80340ca04/68747470733a2f2f64326d787565667165616137736a2e636c6f756466726f6e742e6e65742f735f333743433344443744303435344436433433373939353332354136433538424142413135414337454335383445333136303030333633314445374444333735455f313534363835363135343735315f696d6167652e706e67 "Cycle Transaction Fraud")
 
 Conducts a fraud transaction that is cyclical between multiple accounts. Accounts that are part of the cycle are determined through the order they are within the Alert group list. Similar to FanIn and FanOut transactions there is a private scheduler for when such transaction occur. There are three types of scheudling: *FIXED_INTERVAL* (Conduct transactions sequentially through a computed interval or batch, order is determined through order within Alert list of members), *RANDOM_INTERVAL* (Conducts transactions randomly as determined through a random function), *UNORDERED* (All transactions are conducted at random). Amounts are determined at random from the simulation object (which has set minimums and maximums for transctions). 
 
@@ -268,6 +286,8 @@ Conducts a fraud transaction from a single *Subject* account from within the Ale
 
 ### StackTransactionModel
 *Object Location: amlsim.model.fraud.StackTransactionModel*
+
+![alt text](https://camo.githubusercontent.com/7d7a87cc756af5dc7e3172cce71ecfcc77ede460/68747470733a2f2f64326d787565667165616137736a2e636c6f756466726f6e742e6e65742f735f333743433344443744303435344436433433373939353332354136433538424142413135414337454335383445333136303030333633314445374444333735455f313534363835363231383739355f696d6167652e706e67 "Stack Transaction Fraud")
 
 Conducts a series of fraud transactions between three sets of accounts. The first set sends to an intermediate group which then sends to the remaining third of accounts. Each account is a part of the same Alert group. Amounts are first determined at random from the simulation object (which has set minimums and maximums for transctions), but then multiplied by the amount of beginning and intermediate accounts (this is the amount that gets transfered in the first set of transactions), the second amount is determined through dividing that first amount by how many accounts are involved in the second set of transactions. 
 
