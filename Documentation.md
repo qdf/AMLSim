@@ -5,6 +5,7 @@
 * [Simulation Properties](#Simulation-Properties)
 * [Graph Generation Properties](#Graph-Generation-Properties)
 * [Transaction Graph Generator](#Transaction-Graph-Generator)
+* [Transaction Types](#Transaction-Types)
 * [Build Transaction Types](#How-to-build-fraud-transaction-types)
 * [Issues/Concerns](#Issues-Concerns)
 ---
@@ -186,9 +187,36 @@ Documentation of the python script transaction_graph_generator.py within the scr
 
 ---
 
+# Transaction Types
+Default transaction types are already provided, all transaction types are a subclass of the AbstractTransactionModel.
+
+## Normal Transactions
+Normal transactions are those enacted by agents who are Not considered to be fraud accounts.
+
+### SingleTransactionModel
+*Object Location: amlsim.model.normal.SingleTransactionModel*
+Conducts a single transaction at a random time point (computed through uniformly random distribution) to a random destination of that account. Amount is determined by the balance of the account.
+
+### FanOutTransactionModel
+
+### FanInTransactionModel
+
+### MutualTransactionModel
+
+### ForwardTransactionModel
+
+### PeriodicalTransactionModel
+
+### EmptyModel
+Doesn't do anything
+
+---
+
 # How to build fraud transaction types
 
 ---
+
+
 
 
 
@@ -197,11 +225,12 @@ Documentation of the python script transaction_graph_generator.py within the scr
 ---
 
 ## Random Assumptions
-Many of the processes or decisions being made throughout the simulation is random, i.e. use a uniform distribution to choose various features or properties of the agents.
+Many of the processes or decisions being made throughout the simulation is random, i.e. use a uniform distribution to choose various features or properties of the agents. Those in **bold** need to have better justifications.
 
 Found random uses:
-* Agent start step (within Account)
+* **Agent start step (within Account)**
 * Amount of cash transactions (within CashInModel and CashOutModel)
+* Target step of a single normal transaction (within SingleTransactionModel)
 
 ## Simulation Decisions
 Hard coded decision are also littered throughout the sim, these need to have valid justifications as to why they are set.
@@ -210,3 +239,4 @@ Found hard coded values:
 * Model transactions are the balance spread out to the number of destinations (this can be seen within any object that extends the AbstractTransactionModel, best seen in FanIn and FanOutTransaction)
 * Default transaction interval is set to 10 (seen in AbstractTransactionModel)
 * Flunctuation of transactions is set to 2 (seen in AbstractTransactionModel)
+* Amount of transaction for SingleTransactionModel is set to the amount of the balance of the account
