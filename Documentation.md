@@ -236,42 +236,52 @@ Fraud transactions are those enacted by agents who are considered to be fraud ac
 ### FraudTransactionModel
 *Object Location: amlsim.model.fraud.FraudTransactionModel*
 
+Main class to handle Fraud transaction types.
 
 
 ### BipartiteTransactionModel
 *Object Location: amlsim.model.fraud.BipartiteTransactionModel*
 
-
+Conducts a fraud transaction between the list of accounts within an Alert group. The first half of the list of members within the Alert group are considered the senders and the second half is the receivers. Amounts are determined at random from the simulation object (which has set minimums and maximums for transctions). 
 
 ### FanOutTransactionModel
 *Object Location: amlsim.model.fraud.FanOutTransactionModel*
 
-
+Conducts a fraud transaction from one account to many accounts. Accounts sent to are determined by those within the Alert group. The amount is determined randomly through the simulation object and then split to all destination accounts. This transaction model uses a private scheduler to determine the simulation steps in which these transactions occur. There are three types of scheudling: *SIMULATNEOUS* (Conduct all transactions within the same step), *FIXED_INTERVAL* (Conduct transactions sequentially through a computed interval or batch, order is determined through order within Alert list of members), *RANDOM_RANGE* (Conducts transactions randomly as determined through a random function). Amounts are determined at random from the simulation object (which has set minimums and maximums for transctions). 
 
 ### FanInTransactionModel
 *Object Location: amlsim.model.fraud.FanInTransactionModel*
 
+Conducts a fraud transaction from multiple accounts to one account. Accounts involved are those within the same Alert group. This also contains a private scheduler for when such transaction occur. There are three types of scheudling: *SIMULATNEOUS* (Conduct all transactions within the same step), *FIXED_INTERVAL* (Conduct transactions sequentially through a computed interval or batch, order is determined through order within Alert list of members), *RANDOM_RANGE* (Conducts transactions randomly as determined through a random function). Amounts are determined at random from the simulation object (which has set minimums and maximums for transctions). 
 
 ### CycleTransactionModel
 *Object Location: amlsim.model.fraud.CycleTransactionModel*
 
-
+Conducts a fraud transaction that is cyclical between multiple accounts. Accounts that are part of the cycle are determined through the order they are within the Alert group list. Similar to FanIn and FanOut transactions there is a private scheduler for when such transaction occur. There are three types of scheudling: *FIXED_INTERVAL* (Conduct transactions sequentially through a computed interval or batch, order is determined through order within Alert list of members), *RANDOM_INTERVAL* (Conducts transactions randomly as determined through a random function), *UNORDERED* (All transactions are conducted at random). Amounts are determined at random from the simulation object (which has set minimums and maximums for transctions). 
 
 ### RandomTransactionModel
 *Object Location: amlsim.model.fraud.PeriodicalTransactionModel*
 
-
+Conducts a fraud transaction from a single *Subject* account from within the Alert group. This subject account will randomly conduct a transaction to one of its neighbors. Amounts are determined at random from the simulation object (which has set minimums and maximums for transctions) divided by the number of possible destinations (neighbors).
 
 ### StackTransactionModel
 *Object Location: amlsim.model.fraud.StackTransactionModel*
 
+Conducts a series of fraud transactions between three sets of accounts. The first set sends to an intermediate group which then sends to the remaining third of accounts. Each account is a part of the same Alert group. Amounts are first determined at random from the simulation object (which has set minimums and maximums for transctions), but then multiplied by the amount of beginning and intermediate accounts (this is the amount that gets transfered in the first set of transactions), the second amount is determined through dividing that first amount by how many accounts are involved in the second set of transactions. 
 
 ---
 
 # How to build fraud transaction types
+Building a new transaction type can be done through the following (**CAUTION: This process has not been tested and is currently based on code walk + read throughs**):
+
+1. Build a new class which has either the FraudTransactionModel or AbstractTransactionModel as the super class (determined through if you want to build a fraud or normal transaction). Please place this transaction in the appropriate module (Fraud transaction types go into amlsim.model.fraud, while normal transactions go into amlsim.model.normal). 
+2. Within transaction classes, a getType() function is needed along with a sendTransactions() function, both need to override the super class function. sendTransaction() determines the logic behind the transaction so define this to handle the pattern you have determined is needed.
+3. Add transaction type to the transaction model IDs within the AbstractTransactionModel, make sure there is a distinguishable name for this new transaction (try to make it stand out compared to others, i.e. don't name it forward...). If you are adding a Fraud transaction model, then add this to the FraudTransaction type and don't add to the AbstractTransactionModel.
+4. Add transaction case to the Account or FraudAccount class (determined by if you are making a Fraud transaction type or Normal transaction type). This is within each constructor, you should see a switch statement with other transaction types being initialized.
+5. Add transaction type to the Python script transaction_graph_generator.py within the self.alert_types dictionary in the __init__ function of the TransactionGenerator. 
+6. Done!
 
 ---
-
 
 
 
@@ -296,3 +306,4 @@ Found hard coded values:
 * Default transaction interval is set to 10 (seen in AbstractTransactionModel)
 * Flunctuation of transactions is set to 2 (seen in AbstractTransactionModel)
 * Amount of transaction for SingleTransactionModel is set to the amount of the balance of the account
+* Some transaction models don't appear to function as described, this may be fine as it would act as expected anyway or could be some java code magic that was missed **Needs to be verified**
