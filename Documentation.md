@@ -5,7 +5,7 @@
 * [Simulation Properties](#Simulation-Properties)
 * [Graph Generation Properties](#Graph-Generation-Properties)
 * [Transaction Graph Generator](#Transaction-Graph-Generator)
-
+* [Issues/Concerns](#Issues-Concerns)
 ---
 # AMLSim Overview
 ---
@@ -185,4 +185,6 @@ Documentation of the python script transaction_graph_generator.py within the scr
 
 ---
 
+# Issues Concerns
 
+---
