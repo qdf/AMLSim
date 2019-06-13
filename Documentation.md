@@ -195,20 +195,76 @@ Normal transactions are those enacted by agents who are Not considered to be fra
 
 ### SingleTransactionModel
 *Object Location: amlsim.model.normal.SingleTransactionModel*
+
 Conducts a single transaction at a random time point (computed through uniformly random distribution) to a random destination of that account. Amount is determined by the balance of the account.
 
 ### FanOutTransactionModel
+*Object Location: amlsim.model.normal.FanOutTransactionModel*
+
+Conducts multiple transaction from one account to all destinations listed within that account. The amount is determined through the balance divided by the number of destinations. This is only enacted if the step within the simulation is determined to be a valid step for that account (determined through randomization of generateDiff function within the AbstractTransactionModel object).
 
 ### FanInTransactionModel
+*Object Location: amlsim.model.normal.FanInTransactionModel*
+
+Conducts multiple transactions from multiple accounts to one destination listed within that account (inverse of FanOutTransactionModel). Amount is determined through dividing the total amount of the accounts from the sending accounts and dividing that by the number of destinations (primarily will be 1, haven't seen a case otherwise yet). 
 
 ### MutualTransactionModel
+*Object Location: amlsim.model.normal.MutualTransactionModel*
+
+Conducts a reciprocal transaction (transaction previously made to this account). Amount is determined to be the account balance. Transactions only occur if the step in the simulation is determined to be a valid step. Valid steps are computed through taking the current step of the simulation minus the start step of the account (typically a range of -10 to 0 as this is randomly determined), then the modulus of that value by the INTERVAL (INTERVAL is hard coded to 10). If that value is Not equal to 0, then the step is considered valid (steps are only invalid 1 in every 10 steps, as set by the INTERVAL).  
 
 ### ForwardTransactionModel
+*Object Location: amlsim.model.normal.ForwardTransactionModel*
+
+Conducts a simple transaction to all accounts listed as a destination within the account. The documentation lists this type as conducting a transaction after recieving a transaction from another account, however the implementation doesn't seem to follow through this (**Need to verify this**). Transactions only occur if the step in the simulation is determined to be a valid step. Valid steps are computed through taking the current step of the simulation minus the start step of the account (typically a range of -10 to 0 as this is randomly determined), then the modulus of that value by the INTERVAL (INTERVAL is hard coded to 10). If that value is equal to 0, then the step is considered valid (steps are only valid 1 in every 10 steps, as set by the INTERVAL).
+
+Only difference between this transaction model and the SingleTransactionModel is that this model will repeat through the simulation, while a SingleTransactionModel will only occur once.
 
 ### PeriodicalTransactionModel
+*Object Location: amlsim.model.normal.PeriodicalTransactionModel*
+
+Conducts scheduled transactions from one account to others as set by a PERIOD hard coded value. PERIOD is used to check if the simulation is in a valid step to conduct the transaction. While the documentation lists this type as conducting sending money to neighbors periodically, the code doesn't seem to be conducting anything that different from a Mutual or Forward TransactionModel, except for the number of destinations (**Need to verify this**). Valid steps are computed through a similar function as previous TransactionModels, however instead this function uses PERIOD instead of INTERVAL (both are set to 10 though).
 
 ### EmptyModel
+*Object Location: amlsim.model.normal.EmptyModel*
+
 Doesn't do anything
+
+## Fraud Transactions
+Fraud transactions are those enacted by agents who are considered to be fraud accounts.
+
+### FraudTransactionModel
+*Object Location: amlsim.model.fraud.FraudTransactionModel*
+
+
+
+### BipartiteTransactionModel
+*Object Location: amlsim.model.fraud.BipartiteTransactionModel*
+
+
+
+### FanOutTransactionModel
+*Object Location: amlsim.model.fraud.FanOutTransactionModel*
+
+
+
+### FanInTransactionModel
+*Object Location: amlsim.model.fraud.FanInTransactionModel*
+
+
+### CycleTransactionModel
+*Object Location: amlsim.model.fraud.CycleTransactionModel*
+
+
+
+### RandomTransactionModel
+*Object Location: amlsim.model.fraud.PeriodicalTransactionModel*
+
+
+
+### StackTransactionModel
+*Object Location: amlsim.model.fraud.StackTransactionModel*
+
 
 ---
 
