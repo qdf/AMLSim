@@ -10,7 +10,7 @@
 * [Issues/Concerns](#Issues-Concerns)
 
 * CRICTICAL 
-** **FIX NEEDED: IGNORE TRANSACTION AMOUNTS UNTIL TRANSACTION AMOUNT FUNCTION IS FIXED** Look at [Issues/Concerns](#Issues-Concerns) for more details
+    * **FIX NEEDED: IGNORE TRANSACTION AMOUNTS UNTIL TRANSACTION AMOUNT FUNCTION IS FIXED** Look at [Issues/Concerns](#Issues-Concerns) for more details
 
 ---
 # AMLSim Overview
