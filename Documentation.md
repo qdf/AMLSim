@@ -8,6 +8,10 @@
 * [Transaction Types](#Transaction-Types)
 * [Build Transaction Types](#How-to-build-fraud-transaction-types)
 * [Issues/Concerns](#Issues-Concerns)
+
+* CRICTICAL 
+** **FIX NEEDED: IGNORE TRANSACTION AMOUNTS UNTIL TRANSACTION AMOUNT FUNCTION IS FIXED** Look at [Issues/Concerns](#Issues-Concerns) for more details
+
 ---
 # AMLSim Overview
 ---
@@ -320,6 +324,9 @@ Building a new transaction type can be done through the following (**CAUTION: Th
 # Issues Concerns
 
 ---
+
+## Issues
+* Transaction amounts vary between Fraud and Normal accounts. For fraud accounts, the amount is set within a fixed min and max range. For normal accounts, the amount is calucated through using the balance within the account. This offset between the two creates a strong divide over time as the normal transactions will increase in amount exponentially over time, while fraud transactions remain constant through time. **FIX NEEDED: IGNORE TRANSACTION AMOUNTS UNTIL FIXED**
 
 ## Random Assumptions
 Many of the processes or decisions being made throughout the simulation is random, i.e. use a uniform distribution to choose various features or properties of the agents. Those in **bold** need to have better justifications.
