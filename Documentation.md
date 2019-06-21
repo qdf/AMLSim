@@ -194,6 +194,9 @@ Documentation of the python script transaction_graph_generator.py within the scr
 # Transaction Types
 Default transaction types are already provided, all transaction types are a subclass of the AbstractTransactionModel.
 
+![alt text](https://github.com/qdf/AMLSim/blob/master/AMLSim%20Transaction%20Object%20Hierarchy.jpeg "AMLSim Transaction object overview")
+
+
 ## Normal Transactions
 Normal transactions are those enacted by agents who are Not considered to be fraud accounts.
 
