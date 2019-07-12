@@ -3,7 +3,7 @@ This project aims at building a multi-agent simulator of anti-money laundering -
 
 # Fixes and TODO on Functionalities
 - Less Hard Coded Information within property files
-  - make this more user friendly, i.e. so people can specific within docker file instead of property files
+  - make this more user friendly, i.e. so people can specify within docker file instead of property files
 
 # Dependencies
 - Java 8
