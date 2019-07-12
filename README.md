@@ -1,6 +1,9 @@
 # AMLSim
 This project aims at building a multi-agent simulator of anti-money laundering - namely AML, and sharing synthetically generated data so that researchers can design and implement their new algorithms over the unified data.
 
+# Fixes and TODO on Functionalities
+- Less Hard Coded Information within property files
+  - make this more user friendly, i.e. so people can specify within docker file instead of property files
 
 # Dependencies
 - Java 8
