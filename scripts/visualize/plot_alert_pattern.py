@@ -23,12 +23,20 @@ def plot_alert(tx_csv):
     reader = csv.reader(rf)
     next(reader)
 
+    #Updated these row values to match those found within tx.csv
+    
+    #Progress tracker
+    total = 10000000
+    progress = 0.0
+    old = 0
     for row in reader:
-      step = int(row[0])
-      src = row[3]
-      dst = row[6]
-      isFraud = int(row[9]) > 0
-      alertID = int(row[10])
+      step = int(row[5])
+      src = row[1]
+      dst = row[2]
+      #TODO: Check if this is correct, changed this from an int representation as produced before, changed to handle
+      #string format as is represented within tx.csv
+      isFraud = str.lower(row[6]) == "true"
+      alertID = int(row[7])
       g.add_edge(src, dst)
       edges.append((step, src, dst))
       acct_alert[src].add(alertID)
@@ -43,22 +51,29 @@ def plot_alert(tx_csv):
 
         e_suspicious[step].add((src, dst))
         e_suspicious[step].add((dst, src))
-
-  pos = nx.spring_layout(g)
+      progress += 1
+      percent = int((progress/total)*100)
+      if percent != old:
+          old = percent
+          print("%s%%"%old)
+  pos = nx.fruchterman_reingold_layout(g)
   subg = nx.DiGraph()
 
   steps = list(range(30)) # sorted(set([e[0] for e in edges]))
 
   def show_graph(i):
-    if i != 0:
-      plt.cla()
+#    if i != 0:
+    plt.cla()
 
     def within_acct(acct):
       alertIDs = acct_alert[acct]
       return True in [alert_st.get(alert, -1) <= i <= alert_ed.get(alert, -1) for alert in alertIDs]
 
     new_edges = [(src, dst) for (step, src, dst) in edges if step == steps[i]]
+#    print(len(new_edges))
+    subg = nx.DiGraph()
     subg.add_edges_from(new_edges)
+    pos = nx.fruchterman_reingold_layout(subg,k=0.1)
     nodes = subg.nodes()
     eedges = subg.edges()
     colors = ["r" if within_acct(n) else "b" for n in nodes]
@@ -72,7 +87,7 @@ def plot_alert(tx_csv):
 
   fig = plt.figure()
   anim = animation.FuncAnimation(fig, show_graph, frames=len(steps))
-  anim.save('tx.gif', writer='imagemagick', fps=1)
+  anim.save('tx.html', writer='imagemagick', fps=1)
 
 
 

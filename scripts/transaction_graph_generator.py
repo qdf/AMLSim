@@ -6,6 +6,7 @@ import random
 import csv
 import os
 import sys
+import pickle
 
 
 #### Utility functions parsing values
@@ -216,56 +217,79 @@ class TransactionGenerator:
     # fname = os.path.join(self.input_dir, self.conf.get("InputFile", "account_list"))
     # self.attr_names.extend(["SEQ", "FIRST_NAME", "LAST_NAME", "STREET_ADDR", "CITY", "STATE", "ZIP",
     #                         "GENDER", "PHONE_NUMBER", "BIRTH_DATE", "SSN", "LON", "LAT"])
-    self.attr_names.extend(["FIRST_NAME", "LAST_NAME", "STREET_ADDR", "CITY", "STATE", "ZIP",
-                            "GENDER", "PHONE_NUMBER", "BIRTH_DATE", "SSN", "LON", "LAT"])
+    self.attr_names.extend(["FIRST_NAME", "LAST_NAME", "STREET_ADDR",
+                            "CITY", "STATE", "ZIP", "PHONE_NUMBER",
+                            "BUS", "JURISDICTION","ACCT_TYPE","ACCT_PURPOSE",
+                            "ACCT_OPEN"])
 
     with open(fname, "r") as rf:
       reader = csv.reader(rf)
       header = next(reader)
       name2idx = {n:i for i,n in enumerate(header)}
-      idx_aid = name2idx["uuid"]
+      idx_aid = name2idx["account_id"]
       # idx_seq = name2idx["seq"]
-      idx_first_name = name2idx["first_name"]
-      idx_last_name = name2idx["last_name"]
-      idx_street_addr = name2idx["street_addr"]
-      idx_city = name2idx["city"]
-      idx_state = name2idx["state"]
-      idx_zip = name2idx["zip"]
-      idx_gender = name2idx["gender"]
-      idx_phone_number = name2idx["phone_number"]
-      idx_birth_date = name2idx["birth_date"]
-      idx_ssn = name2idx["ssn"]
-      idx_lon = name2idx["lon"]
-      idx_lat = name2idx["lat"]
+      idx_name = name2idx["display_nm"]
+      idx_street_addr = name2idx["street_line1_txt"]
+      idx_city = name2idx["city_nm"]
+      idx_state = name2idx["state_cd"]
+      idx_zip = name2idx["postal_cd"]
+      #idx_gender = name2idx["gender"]
+      idx_phone_number = name2idx["phone_num"]
+      #idx_birth_date = name2idx["birth_date"]
+      #idx_ssn = name2idx["ssn"]
+      #idx_lon = name2idx["lon"]
+      #idx_lat = name2idx["lat"]
 
-      country = "US"
-      acct_type = "I"
+      idx_country = name2idx["cntry_cd"]
+      idx_acct_type = name2idx["ownership_type"]
+
+      idx_bus_domain = name2idx["bus_domain"]
+      idx_jur = name2idx["jurisdiction"]
+      idx_acct_type = name2idx["acct_type"]
+      idx_acct_purpose = name2idx["acct_purpose"]
+      idx_acct_open = name2idx["acct_open_dt"]
+      #idx__profile = name2idx["high_profile_ind"]
+
 
       count = 0
       for row in reader:
         aid = row[idx_aid]
         # seq = row[idx_seq]
-        first_name = row[idx_first_name]
-        last_name = row[idx_last_name]
+        first_name = row[idx_name].split(" ")[0]
+        last_name = row[idx_name].split(" ")[-1]
+        # first_name = row[idx_first_name]
+        # last_name = row[idx_last_name]
         street_addr = row[idx_street_addr]
         city = row[idx_city]
         state = row[idx_state]
         zip_code = row[idx_zip]
-        gender = row[idx_gender]
+        country = row[idx_country]
+        #gender = row[idx_gender]
         phone_number = row[idx_phone_number]
-        birth_date = row[idx_birth_date]
-        ssn = row[idx_ssn]
-        lon = row[idx_lon]
-        lat = row[idx_lat]
+        #birth_date = row[idx_birth_date]
+        #ssn = row[idx_ssn]
+        #lon = row[idx_lon]
+        #lat = row[idx_lat]
         # model = default_model
         model = random.choice(model_ids)
         # start = start_day + random.randrange(start_range)
         # end = end_day - random.randrange(end_range)
 
+        bus_dom = row[idx_bus_domain]
+        jurisdiction = row[idx_jur]
+        acct_type = row[idx_acct_type]
+        acct_purpose = row[idx_acct_purpose]
+        acct_open = row[idx_acct_open]
+        #high_profile = row[idx_high_profile]
+
         # attr = {"SEQ": seq, "FIRST_NAME": first_name, "LAST_NAME": last_name, "STREET_ADDR": street_addr,
+        # attr = {"FIRST_NAME": first_name, "LAST_NAME": last_name, "STREET_ADDR": street_addr,
+        #        "CITY": city, "STATE": state, "ZIP": zip_code, "GENDER": gender, "PHONE_NUMBER": phone_number,
+        #        "BIRTH_DATE": birth_date, "SSN": ssn, "LON": lon, "LAT": lat}
         attr = {"FIRST_NAME": first_name, "LAST_NAME": last_name, "STREET_ADDR": street_addr,
-                "CITY": city, "STATE": state, "ZIP": zip_code, "GENDER": gender, "PHONE_NUMBER": phone_number,
-                "BIRTH_DATE": birth_date, "SSN": ssn, "LON": lon, "LAT": lat}
+                "CITY": city, "STATE": state, "ZIP": zip_code, "PHONE_NUMBER": phone_number,
+                "BUS": bus_dom, "JURISDICTION": jurisdiction,"ACCT_TYPE":acct_type,"ACCT_PURPOSE":acct_purpose,
+                "ACCT_OPEN": acct_open}
 
         init_balance = random.uniform(min_balance, max_balance)  # Generate the initial balance
         # self.add_account(aid, init_balance, start, end, country, acct_type, False, model, **attr)
@@ -356,11 +380,14 @@ class TransactionGenerator:
       out_deg = list()  # Out-degree sequence
       with open(deg_csv, "r") as rf:  # Load in/out-degree sequences from parameter CSV file for each account
         reader = csv.reader(rf)
-        next(reader)
+        headers = reader.next()
+        #next(reader)
         for row in reader:
-          nv = int(row[0])
-          in_deg.extend(int(row[1]) * [nv])
-          out_deg.extend(int(row[2]) * [nv])
+          in_deg.append(int(row[headers.index("In-degree")]))
+          out_deg.append(int(row[headers.index("Out-degree")]))
+          #nv = int(row[0])
+          #in_deg.extend(int(row[1]) * [nv])
+          #out_deg.extend(int(row[2]) * [nv])
 
       # print(len(in_deg), len(out_deg))
       assert len(in_deg) == len(out_deg), "In/Out-degree Sequences must have equal length."
@@ -869,6 +896,9 @@ class TransactionGenerator:
 
     print("Exported members of %d alerted groups." % len(self.alert_groups))
 
+  def write_graph(self):
+    with open("transaction_graph.pkl","wb") as f_p:
+        pickle.dump(self.g,f_p)
 
 
 if __name__ == "__main__":
@@ -894,4 +924,4 @@ if __name__ == "__main__":
   txg.write_account_list()  # Export accounts to a CSV file
   txg.write_transaction_list()  # Export transactions to a CSV file
   txg.write_alert_members()  # Export alert accounts to a CSV file
-
+  txg.write_graph() # Export networkx graph object as PKL file

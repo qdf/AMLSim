@@ -6,10 +6,9 @@ if [[ $# -ne 2 ]]; then
 fi
 
 MIN_HEAP=2g
-MAX_HEAP=4g
+MAX_HEAP=30g
 
 NAME=$1
 STEP=$2
 
 java -XX:+UseConcMarkSweepGC -XX:ParallelGCThreads=2 -Xms${MIN_HEAP} -Xmx${MIN_HEAP} -cp "jars/*:bin" amlsim.AMLSim -file amlsim.properties -for ${STEP} -r 1 -name ${NAME}
-
