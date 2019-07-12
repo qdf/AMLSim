@@ -1,0 +1,69 @@
+{
+    "account_purpose":
+    {
+        "description": "Purpose for account opening.",
+        "value":
+        {
+            "basic checking":
+            {
+                "PHE":
+                {
+                    "description": "Personal/Household Expenses",
+                    "value": 1.0
+                }
+            },
+            "savings":
+            {
+                "SI":
+                {
+                    "description": "Savings/Investments",
+                    "value": 0.95
+                },
+                "TPP":
+                {
+                    "description": "Trust/Pension/Profit Sharing Account",
+                    "value": 0.05
+                }
+            },
+            "interest checking":
+            {
+                "SI":
+                {
+                    "description": "Savings/Investments",
+                    "value": 0.95
+                },
+                "TPP":
+                {
+                    "description": "Trust/Pension/Profit Sharing Account",
+                    "value": 0.05
+                }
+            },
+            "money market":
+            {
+                "SI":
+                {
+                    "description": "Savings/Investments",
+                    "value": 0.95
+                },
+                "TPP":
+                {
+                    "description": "Trust/Pension/Profit Sharing Account",
+                    "value": 0.05
+                }
+            },
+            "term":
+            {
+                "SI":
+                {
+                    "description": "Savings/Investments",
+                    "value": 0.95
+                },
+                "TPP":
+                {
+                    "description": "Trust/Pension/Profit Sharing Account",
+                    "value": 0.05
+                }
+            }
+        }
+    }
+}

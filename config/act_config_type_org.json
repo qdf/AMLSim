@@ -1,0 +1,85 @@
+{
+    "account_purpose":
+    {
+        "description": "Purpose for account opening.",
+        "value":
+        {
+            "basic checking":
+            {
+                "EA":
+                {
+                    "description": "Escrow Account",
+                    "value": 0.15
+                },
+                "GOA": {
+                    "description": "General Operating Account",
+                    "value": 0.50
+                },
+                "PA": {
+                    "description": "Payroll Account",
+                    "value": 0.10
+                },
+                "PCDA": {
+                    "description": "Proprietary & Customer Directed Account",
+                    "value": 0.15
+                },
+                "POA": {
+                    "description": "Proprietary Operating Account",
+                    "value": 0.10
+                }
+            },
+            "savings":
+            {
+                "SI":
+                {
+                    "description": "Savings/Investments",
+                    "value": 0.95
+                },
+                "TPP":
+                {
+                    "description": "Trust/Pension/Profit Sharing Account",
+                    "value": 0.05
+                }
+            },
+            "interest checking":
+            {
+                "SI":
+                {
+                    "description": "Savings/Investments",
+                    "value": 0.95
+                },
+                "TPP":
+                {
+                    "description": "Trust/Pension/Profit Sharing Account",
+                    "value": 0.05
+                }
+            },
+            "money market":
+            {
+                "SI":
+                {
+                    "description": "Savings/Investments",
+                    "value": 0.95
+                },
+                "TPP":
+                {
+                    "description": "Trust/Pension/Profit Sharing Account",
+                    "value": 0.05
+                }
+            },
+            "term":
+            {
+                "SI":
+                {
+                    "description": "Savings/Investments",
+                    "value": 0.95
+                },
+                "TPP":
+                {
+                    "description": "Trust/Pension/Profit Sharing Account",
+                    "value": 0.05
+                }
+            }
+        }
+    }
+}

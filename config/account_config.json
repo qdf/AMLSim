@@ -1,0 +1,134 @@
+{
+    "customer_data_filepath":
+    {
+        "description": "Path to the customer dataset file that was generated.",
+        "value": "../output_datasets/customer_combined_%s.csv"
+    },
+    "customer_data_col_nm":
+    {
+        "description": "In order to generate account data, some data is carried over from the customer dataset. This variable will help define the column names that are needed by the account data generation script.",
+        "value":
+        {
+            "cust_cust_id_col": "customer_id",
+            "cust_cust_type_col": "cust_type",
+            "cust_bus_domain_col": "bus_domain_nm",
+            "cust_jurisdiction_col": "jurisdiction",
+            "cust_display_nm_col": "display_nm",
+            "cust_customer_id_col": "customer_id",
+            "cust_seq_num_col": "seq_num",
+            "cust_city_nm_col": "city_nm",
+            "cust_cntry_cd_col": "cntry_cd",
+            "cust_postal_cd_col": "postal_cd",
+            "cust_state_cd_col": "state_cd",
+            "cust_street_line1_txt_col": "street_line1_txt",
+            "cust_phone_num_col": "phone_num"
+        }
+    },
+    "act_config_files_cust_type":
+    {
+        "description": "Account parameters specific to customer type are assigned using separate config files.",
+        "value": ["act_config_type_ind.json", "act_config_type_org.json"]
+    },
+    "column_names":
+    {
+        "description": "column names of the various account fields to populate in the DB. The column names must be specified in the same order as they are listed in the DB.",
+        "value":
+        {
+            "fb_account":
+            {
+                "description": "column names associated with the fb_account table.",
+                "value": [
+                    "account_id",
+                    "bus_domain",
+                    "jurisdiction",
+                    "display_nm",
+                    "acct_type",
+                    "ownership_type",
+                    "acct_purpose",
+                    "acct_open_dt",
+                    "primary_cust_id"
+                ]
+            },
+            "fb_acct_to_cust":
+            {
+                "description": "column names associated with the fb_acct_to_cust table.",
+                "value": [
+                    "customer_id"
+                ]
+            },
+            "fb_acct_phone_num":
+            {
+                "description": "column names associated with the fb_cust_phone_num table.",
+                "value": [
+                    "phone_id",
+                    "phone_num"
+                ]
+            },
+            "fb_acct_address":
+            {
+                "description": "column names associated with the fb_cust_address table.",
+                "value": [
+                    "seq_num",
+                    "city_nm",
+                    "cntry_cd",
+                    "postal_cd",
+                    "state_cd",
+                    "street_line1_txt"
+                ]
+            }
+        }
+    },
+    "params_nbr_accounts_per_user":
+    {
+        "description": "Parameters of a skewed distribution that help sample the number of accounts to assign to each customer.",
+        "value":
+        {
+            "skewness_factor":
+            {
+                "description": "Skewness parameter of the probability distribution function.",
+                "value": 1000
+            },
+            "scale_factor":
+            {
+                "description": "Scale parameter of the probability distribution function.",
+                "value": 2
+            }
+        }
+    },
+    "open_account_date_range":
+    {
+        "description": "Date account opened.",
+        "value": ["01/01/2018 1:30 PM", "5/31/2018 4:50 AM"]
+    },
+    "act_types":
+    {
+        "description": "Account types and probability estimate of each account type.",
+        "value":
+        {
+            "savings": 0.33,
+            "basic checking": 0.40,
+            "interest checking": 0.15,
+            "money market": 0.03,
+            "term": 0.09
+        }
+    },
+    "map_cust_type_to_act_owner_type":
+    {
+        "description": "The customer types are different from account ownership tyoes. This parameter helps in mapping the customer type to the right account ownership type.",
+        "value":
+        {
+            "IND": "IND",
+            "ORG": "CORP"
+        }
+    },
+    "percent_act_adrs_dfrnt":
+    {
+        "description": "Percentage of accounts to have a different address than the address assigned in the customer dataset.",
+        "value": 30.0
+    },
+    "percent_act_ph_dfrnt":
+    {
+        "description": "Percentage of accounts to have different phone information than the phone information assigned in the customer dataset.",
+        "value": 30.0
+    }
+}

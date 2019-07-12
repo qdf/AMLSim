@@ -1,0 +1,76 @@
+{
+	"percent_cust_cob_US":
+		{
+			"description": "percentage of organizations originated in the US.",
+			"value": 99.988
+		},
+	"percent_cust_cob_nonUS_nonSanctionCtry":
+		{
+			"description": "percentage of organizations originated neither in the US nor in a country listed on a Sanctions list.",
+			"value": 0.0117
+		},
+	"probs_risk_score":
+		{
+			"description": "probability distribution of organization risk level. The user has to define a probability value for each customer risk level. The code creates a customer risk level ranging from 1 to n_risk_levels. Where n_risk_levels is the number of organization risk levels. It's important that the sum of the probability values are exactly equal to 1.",
+            "value": [0.95, 0.04, 0.009, 0.0007, 0.0003]
+		},
+	"income_range":
+        {
+            "description": "mapping of the income ranges for organizations.",
+            "value":
+                {
+                    "5000_25000": "A",
+                    "25000_50000": "B",
+                    "50000_100000": "C",
+                    "100000_150000": "D",
+                    "150000_200000": "E",
+                    "200000_250000": "F",
+                    "250000_300000": "G",
+                    "300000_350000": "H",
+                    "350000_600000": "I",
+                    "600000_1200000": "J",
+                    "1200000_2000000": "K",
+                    "2000000_5000000": "L",
+                    "5000000_1000000000": "M"
+                }
+        },
+    "income_brackets":
+        {
+            "description": "Providing a range from which samples are generated randomly.",
+            "value":
+                {
+                    "min": 750000,
+                    "max": 1000000001
+                }
+        },
+    "residence_ctry_cd":
+        {
+            "description": "Code of the residence country for organizations.",
+            "value": "USA"
+        },
+    "effective_risk_score_range":
+        {
+            "description": "range of the customer effective risk scores for organizations.",
+            "value": [1, 10]
+        },
+    "cust_status_cd":
+        {
+            "description": "customer status codes for organizations.",
+            "value": ["A", "P", "I"]
+        },
+    "cust_status_prob":
+        {
+            "description": "probability values for each customer status code for organizations.",
+            "value": [0.8, 0.1, 0.1]
+        },
+    "bus_domain_cd":
+        {
+            "description": "codes for the different business domains for organizations.",
+            "value": ["a", "b", "c", "d", "e", "f", "g"]
+        },
+    "jurisdiction_ctry_cd":
+        {
+            "description": "Code to assign for the jurisdiction of a customer.",
+            "value": "USA"
+        }
+}

@@ -1,0 +1,155 @@
+﻿Business Field,Column Name,Data Type,Definition,Null,Standard Values
+Factbase Sequence ID,fb_acct_id,NUMBER(22),Unique identifier for this account that is unique across the Factbase.,Not Null,
+Account Identifier,account_id,CHAR(50),Identifier for a specific account that is unique across the enterprise. All trades and transactions are associated with an account identifier.,Not Null,
+Business Domain(s),bus_domain,CHAR(65),"Account’s business domain(s) (forexample, institutional brokerage or retail brokerage). uses this field to control access to data across distinct business operations.",Not Null,a: General
+,,,,,b: Institutional Broker Dealer
+,,,,,c: Retail Brokerage/Private Client
+,,,,,d: Retail Banking
+,,,,,e: Corporate/Wholesale Banking
+,,,,,f: Employee Information
+,,,,,g: Asset Management
+,,,,,h-z: Other values as specified by the client
+Jurisdiction,jurisdiction,CHAR(4),Jurisdiction associated with this account.,Not Null,
+Geographic Jurisdiction,geo_jurisdiction,CHAR(100),Geographic jurisdiction associated with this account.,Null,
+Branch Code,branch_cd,CHAR(20),Organization where this account is domiciled.,Null,
+Account Display Name,display_nm,CHAR(100),Account name to be displayed in the application. This is often the name of the primary customer on the account.,Null,
+Account Title Line 1,title_1,CHAR(100),First line of this account’s title.,Null,
+Account Title Line 2,title_2,CHAR(100),Second line of this account’s title.,Null,
+Account Type,acct_type,CHAR(20),client-specified account type classification for the usage of this account.,Null,CHK: Checking
+,,,,,SAV: Savings
+,,,,,MM: Money Market
+,,,,,RETIRE: Retirement
+,,,,,INV: Investment
+,,,,,LOAN: Loan
+,,,,,HLTH SAV: Health Savings
+,,,,,INS: Insurance Policy
+,,,,,CC: Credit Card
+,,,,,SVCARD: Stored Value Card
+,,,,,O: Others
+,,,,,TERM: Term/Time Deposit or Certificate of Deposit
+,,,,,Firm-specified: Other values as specified by the client
+Account Holder Type,acct_holder_type,CHAR(20),Type of internal or external customer that uses this account.,Null,CR: Retail Customer
+,,,,,CI: Institutional Customer
+,,,,,IA: Investment Advisor
+,,,,,CO: Correspondent Financial Institution
+,,,,,EE: Employee/Family Member FP: Firm Trading
+,,,,,"FO: Firm Owned,"
+,,,,,Non-Trading
+,,,,,FA: Firm Administrativ e
+,,,,,FE: Firm Error/Suspen se
+,,,,,DC: Clearing Organization
+,,,,,IS: Issuer/Writer
+Account Ownership Type,ownership_type,CHAR(20),Form of legal ownership/registration for this account.,Null,IND: Individual
+,,,,,JOINT: Joint Tenant/Community Property
+,,,,,TRUST: Trust
+,,,,,CUST: Custodian
+,,,,,CORP: Corporate
+,,,,,FIRM: Firm Owned
+,,,,,OTHER: Other
+Account Purpose,acct_purpose,CHAR(20),Purpose or special use of this account.,Not Null,F: Facilitation
+,,,,,L: Lock Box
+,,,,,O: Other
+,,,,,CA: Custodial Account
+,,,,,CDA: Customer Directed Account
+,,,,,EA: Escrow Account
+,,,,,GOA: General Operating Account
+,,,,,PA: Payroll Account
+,,,,,PCDA:
+,,,,,Proprietary & Customer Directed Account
+,,,,,PHE: Personal/Household Expenses
+,,,,,POA: Proprietary Operating Account
+,,,,,SI: Savings/Investments
+,,,,,TPP: Trust/Pension/Profit Sharing Account
+Method of Account Opening,opening_method,CHAR(20),"Means by which the customer uses to open this account (e.g., Internet, in person, via a third party).",Null,PER: In person
+,,,,,ONL: Online
+,,,,,LREP: Legal
+,,,,,Representative
+,,,,,PHN: Phone
+,,,,,O: Others
+,,,,,Firm-specified: Other values as specified by the client
+Method of Initial Funds,init_fund_method,CHAR(80),"Type of payment made by the customer to supply initial funds for this account (e.g., cash, check, wire transfer, etc.).",Null,CDC: Cash - Debit Card
+,,,,,CSVC: Cash - Stored Value Card
+,,,,,CCC: Cash -Credit Card
+,,,,,CCUR: Cash -Currency
+,,,,,CPDR: Cash -Physical Delivery/Receipt
+,,,,,MICC: Monetary Instrument -Cashiers Check
+,,,,,CERTCHK: Monetary Instrument - Certified Check
+,,,,,MO: Monetary Instrument -Money Order
+,,,,,TC: Monetary Instrument - Travellers Check
+,,,,,OCEP: Monetary Instrument -
+,,,,,Other Cash Equivalent Product
+,,,,,CL: Monetary Instrument - Cash Letter
+,,,,,CHK: Monetary Instrument - Check
+,,,,,OPP: Monetary Instrument - Other Paper Product
+,,,,,ACH: Wire - Electronic Funds Transfer via
+,,,,,ACHTRS: Wire - Electronic Funds Transfer via Treasury
+,,,,,FEDWIRE:Wire - Electronic Funds Transfer via Fedwire
+,,,,,SWIFT: Wire - Electronic Funds Transfer via SWIFT
+,,,,,OM: Wire - Electronic Funds Transfer via Other Mechanism
+,,,,,PD: Wire - Payroll Deduction
+,,,,,O: Others
+,,,,,Firm-specified: Other values as specified by the client
+Account Open Date,acct_open_dt,DATE,Date on which the account was opened.,Null,
+Account Close Date,acct_close_dt,DATE,Date on which the account was closed.,Null,
+Account Peer Group Identifier,acct_peer_id,CHAR(50),Account peer group of which this account is a member.,Null,
+Account Reporting Currency,reporting_cur,CHAR(3),Currency in which all statements for this account are denominated.,Null,ISO 4217: Alpha currency code
+Account Status,acct_status,CHAR(1),"Status of this account (for example, active, inactive, or closed).",Null,A: Active
+,,,,,I: Inactive D: Dormant (extended inactivity) C: Closed
+,,,,,X: Purge
+Account Status Date,acct_status_dt,DATE,Date on which the current account status became effective.,Null,
+Account Tax Identifier,acct_tax_id,CHAR(20),Tax identification number associated with this account.,Null,
+Account Verification Profile Date,verif_profile_dt,DATE,Date for when the Account Verification Profile (AVP) letter was sent for a profile.,Null,
+Business Risk,bus_risk,NUMBER(3),Level of risk associated with the general business characteristics of this account as determined by the client.,Null,0-10: Increasing levels of risk
+Cash Report Exemption Indicator,cash_exempt_ind,CHAR(1),Indicator of whether this account has an exemption from filing Cash Transaction Reports (CTRs).,Null,
+Control Group Code,control_group_cd,CHAR(25),client-specified control group code used to identify a control group with which this account is associated.,Null,
+Control Identifier,control_id,CHAR(25),client-specified control identifier used to represent a master account such as a specific Trust Account with which this account is associated.,Null,
+Employee Account Indicator,empl_acct_ind,CHAR(1),"Indicator of whether an active member of the client has a personal association to this account, either through a direct customer role or a family member relationship.",Null,
+CPI Indicator,cpi_ind,CHAR(1),Indicator of whether Client Profile Information (CPI) documentation is present for this account. If a value is not provided will default this field to N for No.,Null,
+Customer Risk,customer_risk,NUMBER(3),Identifier of the effective risk of this account’s primary customer.,Null,-2: Trusted to a level of exclusion from monitoring
+,,,,,-1: Trusted to a level of reduced monitoring
+,,,,,0: Neither trusted or risky
+,,,,,1-10: Increasing levels of risk
+Custom Risk 1,custom_risk_1,NUMBER(3),"Identifier of an arbitrary risk associated with this account as determined by the client, which is used solely for alert analysis.",Null,0-10: Increasing levels of risk
+Custom Risk 2,custom_risk_2,NUMBER(3),"Arbitrary risk associated with this account as determined by the client, which is used solely for alert analysis.",Null,0-10: Increasing levels of risk
+Customer Risk Watch List Identifier,customer_wl_nm,VARCHAR2(250),Unique identifier that describes a source of Watch List data associated with the primary customer on this account.,Null,
+Geography Risk,geo_risk,NUMBER(3),"Identifier of the level of risk associated with the geographic characteristics of this account as determined by the client. Firms have used account addresses and customer information (for example, citizenship) to determine the level of risk.",Null,0-10: ncreasing levels of risk
+Account Effective Risk,effective_risk,NUMBER(3),Level of risk associated with this account as determined in large part by membership on one or more Watch Lists.,Not Null,-2: Trusted to a level of exclusion from monitoring
+,,,,,-1: Trusted to a level of reduced monitoring
+,,,,,0: Neither trusted or risky
+,,,,,1-10: Increasing levels of risk
+Account Effective Risk Factor,effective_risk_factor,CHAR(50),Property or association of the account driving the Account Effective Risk.,Null,
+High Activity Account Indicator,high_activity_ind,CHAR(1),Indicator of whether this account has a high activity level in terms of trades or other transactions.,Null,
+High Profile Account Indicator,high_profile_ind,CHAR(1),Indicator of whether this account is a 'high profile' or preferred account that prove to be a conflict of interest while managing the assets of portfolio of accounts.,Not Null,
+Household Account Group Identifier,household_group_id,CHAR(50),"For personal accounts, identifies the household to which this account is assigned.",Null,
+OFAC Reason,ofac_reason,CHAR(1),Restriction due to compliance.,Null,O: OFAC FREEZE
+,,,,,P: PATRIOT ACT FREEZE
+,,,,,V: PATRIOT VERIFICATIO
+,,,,,NF: SYSTEMATIC CIP FREEZE D: COMPLIANCE CIP OVERRIDE
+,,,,,N: REGISTERED PRINCIPLE
+Primary Client Indicator,primary_client_ind,CHAR(1),Indicator of whether the account is a primary client.,Null,
+Primary Customer Identifier,primary_cust_id,CHAR(50),Primary customer or counterparty associated with this account.,Not Null,
+Primary Owner Organization Identifier,primary_owner_org_id,CHAR(50),"For firm accounts, the identifier for the organization that owns the account.",Null,
+Recalcitrant Indicator,recal_ind,CHAR(1),"Indicator of whether this account is considered to be a recalcitrant account. A Recalcitrant account is defined as an account that (1) fails to comply with reasonable requests for information pursuant to IRS mandated verification and due diligence procedures to identify US Accounts, (2) fails to provide a name, address and taxpayer identification number or (3) fails to provide a bank secrecy waiver upon request.",Null,
+Segment Identifier,segment_id,CHAR(10),"Category identifier used to distinguish sales regions, segments, etc. associated with this account.",Null,
+Small Household Indicator,small_houshold_id,CHAR(1),Indicates that this account is a member of a small household.,Null,
+Source of Initial Funds,initial_fund_src,CHAR(30),"Source from where the initial funds will come as stated by the customer for this account (e.g. salary, lottery, etc.).",Null,
+Standing Instructions to US Account Indicator,standing_instr_ind,CHAR(1),Indicator of standing instructions to transfer funds from this account to an account maintained in the United States.,Null,
+State Code,state_cd,CHAR(25),"client-specified state code indicating a state, country or territory with which this account is associated.",Null,
+Suitability Surveillance Level,suitability_level,NUMBER(2),"Indicator of how closely this account is monitored for risk and suitability issues. The value of this field could be based on the programs/offerings in which the account participates, the features/characteristics of the account, and/or the account’s prior activity.",Null,1-6: Level of Suitability Surveillance (1=strictest to 6=most lenient)
+Tax Identifier Format,tax_id_format,CHAR(1),Indicator of whether the account tax identifier is a Social Security Number (SSN) or another type of identifier.,Null,S: Social\ Security Number
+,,,,,T: Tax Identifier
+,,,,,I: Individual Taxpayer Identification Number
+,,,,,E: Employer Identification Number
+,,,,,F: Foreign Tax Identifier
+,,,,,G: Global Intermediary Identification Number
+,,,,,Firm-specified: Other values as specified by the client
+Tax Payer Customer Identifier,tax_payer_id,CHAR(50),Customer or counterparty who is responsible for paying taxes on this account.,Null,
+US POA or Signatory Indicator,signatory_ind,CHAR(1),Indicator that this account has power of attorney or signatory authority granted to a person with a US address.,Null,
+Watch List Match Text,wl_match_text,CHAR(2000),Text of the identifier or name associated with the Watch List record that was used to populate Watch List Risk for this account.,Null,
+Watch List Match Type,wl_match_type,CHAR(3),Type of entity in the Watch List Match Text.,Null,IA: Internal Account Identifier
+,,,,,TX: Tax Identifier Number
+Watch List Risk,wl_risk,NUMBER(3),Identifier of the level of risk associated with this account on the Watch List record that established the Account Effective Risk.,Null,-2: Trusted to a level of exclusion from monitoring
+,,,,,-1: Trusted to a level of reduced monitoring
+,,,,,0: Neither trusted or risky
+,,,,,1-10: increasing levels of risk
+Watch List Identifier,wl_nm,VARCHAR2(250),Watch List source that was used to populate Watch List Risk for this account.,Null,

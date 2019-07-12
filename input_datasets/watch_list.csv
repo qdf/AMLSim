@@ -1,0 +1,3 @@
+wl_id,wl_nm,wl_status,wl_type,wl_agency_txt,wl_category_txt
+WL-0,US OFAC,ACTIVE,SANCTIONS,TREASURY,PUBLIC
+WL-1,UN Sanctions,ACTIVE,SANCTIONS,UNITED NATIONS,PUBLIC

@@ -1,0 +1,58 @@
+{
+    "n_customers": 
+        {
+            "description": "number of customers the user wishes to generate.",
+            "value": 20000
+        },
+    "customer_types":
+        {
+            "description": "different types of customers.",
+            "value": 
+                {
+                    "IND": 
+                        {
+                            "description": "customer type is individual. Contains the percentage of total customers to assign as individuals. Additionally, it also provides the filename of the 'individual' config file.",
+                            "value": 90.0,
+                            "filename": "cust_type_ind_config.json"
+                        },
+                    "ORG":
+                        {
+                            "description": "customer type is organization. Contains the percentage of total customers to assign as organizations'. Additionally, it also provides the filename of the 'organization' config file.",
+                            "value": 10.0,
+                            "filename": "cust_type_org_config.json"
+                        }
+                }
+        },
+    "percent_cust_sanctions":
+        {
+            "description": "percentage of total customers (defined in n_customers) to be from the Sanctions list. This includes both individuals and organizations.",
+            "value": 1.0
+        },
+    "percent_cust_pep":
+        {
+            "description": "percentage of total customers (defined in n_customers) to be from the PEP list. This inculdes only individuals.",
+            "value": 1.0
+        },
+    "column_names":
+        {
+            "description": "column names of the various customer fields to populate in the DB. The column names must be specified in the same order as they are listed in the DB.",
+            "value": 
+            {
+                "fb_customer":
+                    {
+                        "description": "column names associated with the fb_customer table.",
+                        "value": ["customer_id", "first_nm", "last_nm", "display_nm", "cob_ctry", "cor_ctry", "cust_status", "cust_type", "income_range", "annual_income", "bus_domain_nm", "jurisdiction"]
+                    },
+                "fb_cust_phone_num":
+                    {
+                        "description": "column names associated with the fb_cust_phone_num table.",
+                        "value": ["phone_id", "phone_num"]
+                    },
+                "fb_cust_address":
+                    {
+                        "description": "column names associated with the fb_cust_address table.",
+                        "value": ["seq_num", "city_nm", "cntry_cd", "postal_cd", "state_cd", "street_line1_txt"]
+                    }
+            }
+        }
+}
