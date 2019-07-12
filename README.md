@@ -1,6 +1,12 @@
 # AMLSim
 This project aims at building a multi-agent simulator of anti-money laundering - namely AML, and sharing synthetically generated data so that researchers can design and implement their new algorithms over the unified data.
 
+# To Run
+All that is needed to run this is by running the shell script pipline.sh from the AMLSim directory
+```
+sh pipline.sh
+```
+
 # Fixes and TODO on Functionalities
 - Less Hard Coded Information within property files
   - make this more user friendly, i.e. so people can specify within docker file instead of property files
