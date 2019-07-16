@@ -13,7 +13,7 @@ import numpy as np
 
 print("GENERATING IN AND OUT DEGREES FOR GRAPH GENERATION")
 
-data = pd.read_csv("accounts.csv")
+data = pd.read_csv(os.path.join("outputs","accounts.csv"))
 
 num_tx = 10 * data.shape[0]
 remaining_tx = num_tx
