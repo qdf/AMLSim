@@ -31,5 +31,5 @@ data["min_balance"] = data.apply(lambda row : random_min(row),axis=1)
 
 data["max_balance"] = data.apply(lambda row : random_max(row),axis=1)
 
-data.to_csv("accounts.csv")
+data.to_csv(os.path.join("outputs","accounts.csv"))
 print("DONE")
