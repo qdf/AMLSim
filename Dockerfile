@@ -37,5 +37,5 @@ RUN sudo pip install \
 
 RUN git clone https://github.com/qdf/AMLSim.git
 WORKDIR AMLSim
-RUN sh scripts/build_AMLSim.sh
-# RUN sh pipeline.sh
+RUN sh scripts/build_AMLSim.sh && \
+ sh pipeline.sh
