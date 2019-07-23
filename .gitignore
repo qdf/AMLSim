@@ -31,8 +31,12 @@ tmp/
 # Param files for testing
 paramFiles/*_*/
 
+# CSV and PKL (python pickle) files should be avoided on git
+*.csv
+*.pkl
 
 # Output CSV, Log(txt) and image files
+output_datasets
 outputs/*.csv
 outputs/*/
 outputs/*.txt

@@ -32,4 +32,18 @@ data["min_balance"] = data.apply(lambda row : random_min(row),axis=1)
 data["max_balance"] = data.apply(lambda row : random_max(row),axis=1)
 
 data.to_csv(os.path.join("outputs","accounts.csv"))
+
+data = pd.read_csv(latest_account_csv)
+
+cust_ids = set(data["primary_cust_id"])
+
+def find_rand_cust(row):
+    global cust_ids
+    sample = cust_ids - set(row["primary_cust_id"])
+    return np.random.choice(sample,1)[0]
+
+data["ben_cust_id"] = data.apply(lambda row : find_rand_cust(row),axis=1)
+
+data.to_csv(latest_account_csv)
+
 print("DONE")
