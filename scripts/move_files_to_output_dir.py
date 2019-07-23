@@ -31,13 +31,16 @@ copyfile("transaction_graph.pkl",os.path.join(output_dir,"transaction_graph.pkl"
 
 acct_data = pd.read_csv(latest_account_csv)
 
-tx_data = pd.read_csv(output_dir,"cust_acct_tx_generation_log.csv")
+tx_data = pd.read_csv(os.path.join(output_dir,"cust_acct_tx_generation_log.csv"))
 
 acct_cust_dict = {record["account_id"]:record for record in acct_data.to_dict('records')}
 
-tx_data["orig_cust_id"] = tx_data.apply(lambda row : acct_cust_dict[row["nameOrig"]]["primary_cust_id"])
-
-tx_data["ben_cust_id"] = tx_data.apply(lambda row : acct_cust_dict[row["nameOrig"]]["ben_cust_id"])
-
-tx_data.to_csv(output_dir,"cust_acct_tx_generation_log.csv")
-
+print("TRANFERRING CUSTOMER ID TO TX LOG")
+tx_data["orig_cust_id"] = tx_data.apply(lambda row : acct_cust_dict[row["nameOrig"]]["primary_cust_id"],axis=1)
+print("DONE")
+print("TRANFERRING BENIFACTOR ID TO TX LOG")
+tx_data["ben_cust_id"] = tx_data.apply(lambda row : acct_cust_dict[row["nameOrig"]]["ben_cust_id"],axis=1)
+print("DONE")
+print("WRITING NEW LOG")
+tx_data.to_csv(os.path.join(output_dir,"cust_acct_tx_generation_log.csv"))
+print("DONE")
