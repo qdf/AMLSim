@@ -11,7 +11,7 @@ python scripts/transaction_graph_generator.py aml_prop.ini outputs/accounts.csv 
 echo "DONE"
 
 echo "RUNNING AMLSIM"
-java -XX:+UseConcMarkSweepGC -XX:ParallelGCThreads=2 -Xms2g -Xmx30g -cp "jars/*:bin" amlsim.AMLSim -file amlsim.properties -for 300 -r 1 -name cust_acct_tx_generation
+java -XX:+UseConcMarkSweepGC -XX:ParallelGCThreads=2 -Xms2g -Xmx30g -cp "jars/*:bin" amlsim.AMLSim -file amlsim.properties -for 150 -r 1 -name cust_acct_tx_generation
 
 python scripts/move_files_to_output_dir.py
 
