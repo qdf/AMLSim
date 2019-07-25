@@ -36,7 +36,7 @@ paramFiles/*_*/
 *.pkl
 
 # Output CSV, Log(txt) and image files
-output_datasets
+output_datasets/*.csv
 outputs/*.csv
 outputs/*/
 outputs/*.txt
