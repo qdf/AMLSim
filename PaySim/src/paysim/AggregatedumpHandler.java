@@ -34,15 +34,15 @@ public class AggregatedumpHandler {
 		this.resultDump += separator + "\n";
 		this.resultDump += "|\tIndicator\t|\tOrig\t|\tSynth\t|\tError Rate\t|\n";
 		this.resultDump += separator + "\n";
-		this.resultDump += "|\tNR OF TRANS\t|\t\t|\t\t|\t\t\t|\n";
+		this.resultDump += "|\tNR OF TRANS\t|\t\t|\t\t|\t\t|\n";
 		this.resultDump += "|";
 		
 		getResultOfTotalTransaction(orig, generated);
 		this.resultDump += separator + "\n";
-		this.resultDump += "|\tAVG TRANS SIZE\t|\t\t\t|\t\t\t|\t\t\t\t|\n";
+		this.resultDump += "|\tAVG TRANS SIZE\t|\t\t|\t\t|\t\t|\n";
 		getResultOfAvgTransaction(orig, generated);
 		this.resultDump += separator + "\n";
-		this.resultDump += "|\tTOT ERR RATE\t|\t\t\t|\t\t\t|\t" + format.format(this.totalErrorRate) + "\t\t\t|\n";
+		this.resultDump += "|\tTOT ERR RATE\t|\t\t|\t\t|\t" + format.format(this.totalErrorRate) + "\t\t|\n";
 		this.resultDump += separator + "\n";
 		System.out.println(this.resultDump + "\n");
 		//System.out.println(results + "\n");
