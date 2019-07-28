@@ -1,5 +1,5 @@
 # Compiled class file
-# bin/
+bin/
 
 # Log file
 logs/
@@ -36,9 +36,12 @@ paramFiles/*_*/
 *.pkl
 
 # Output CSV, Log(txt) and image files
-output_datasets
+output_datasets/*.csv
 outputs/*.csv
 outputs/*/
 outputs/*.txt
 outputs/*.png
 outputs/*.gif
+
+#Mac file that stores custom attributes of its containing folder, such as the position of icons or the choice of a background image.
+**/.DS_Store

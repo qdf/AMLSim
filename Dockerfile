@@ -2,6 +2,7 @@
 # TODO: Make customer and accounts size Parameters
 
 ARG BASE_IMAGE_TAG
+
 FROM docker.quantiply.com:18443/quantiply/java8:${BASE_IMAGE_TAG} as builder
 
 LABEL maintainer="Ryan Compton <compton@quantiply.com>"
@@ -35,7 +36,12 @@ RUN sudo pip install \
         barnum==0.5.1 \
         configparser==3.7.4
 
-RUN git clone https://github.com/qdf/AMLSim.git
+#RUN git clone https://github.com/qdf/AMLSim.git
+
+# The user quantiply is created as part of qbase image which is the parent for java8
+COPY --chown=quantiply:quantiply . AMLSim
+
 WORKDIR AMLSim
+
 RUN sh scripts/build_AMLSim.sh && \
  sh pipeline.sh

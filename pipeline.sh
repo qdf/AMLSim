@@ -17,3 +17,6 @@ python scripts/move_files_to_output_dir.py
 
 echo "DATA GENERATION COMPLETE"
 echo "DATA LOCATED WITHIN outputs/cust_acct_tx_generation"
+
+ls -l outputs/cust_acct_tx_generation
+wc -l outputs/cust_acct_tx_generation/customer_combined_*.csv outputs/cust_acct_tx_generation/account_combined_*.csv outputs/cust_acct_tx_generation/cust_acct_tx_generation_log.csv

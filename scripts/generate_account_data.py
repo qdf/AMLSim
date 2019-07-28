@@ -41,6 +41,8 @@ class generate_act_data(read_act_config_data):
     def get_latest_output(self,file_name):
         file_search_term = file_name.split("%")[0].split("/")[-1]
         path = "output_datasets"
+        if path not in os.listdir(os.getcwd()):
+            os.mkdir(os.path.join(os.getcwd(),path))
         files = [os.path.join(path,x) for x in os.listdir(path) if file_search_term in x]
         return max(files,key=os.path.getctime)
 
