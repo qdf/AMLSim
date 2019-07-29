@@ -111,8 +111,6 @@ new_wire_tx["ben_cust_id"] = tx_data["ben_cust_id"]
 new_wire_tx["ben_acct_id"] = tx_data["nameOrig"]
 
 
-
-
 print("WRITING NEW LOGS")
 tx_data.to_csv(os.path.join(output_dir,"cust_acct_tx_generation_log.csv"))
 new_wire_tx.to_csv(os.path.join(output_dir,"wire_txn_data.csv"))
