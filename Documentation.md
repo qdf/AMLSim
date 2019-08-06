@@ -345,7 +345,7 @@ Building a new transaction type can be done through the following (**CAUTION: Th
 * Target step of a single normal transaction (within SingleTransactionModel)
 * Model transactions are balanced to spread out to the number of destinations (FanIn and FanOut)
 * Transaction interval default is 10
-* Fluxuction of transactions is set to 2
+* Fluctuation of transactions is set to 2
 * SingleTransactionalModel has only transaction move all money out
 * Degree distribution of network is purely random
 
