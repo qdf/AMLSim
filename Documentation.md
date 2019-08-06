@@ -332,24 +332,25 @@ Building a new transaction type can be done through the following (**CAUTION: Th
 * Multi-institutions
 * New Transaction Types
 * Have goals of clients and account, help set logic of why they are conducting the transactions they are
-* Avoid hard 
+* Avoid hard coded values
+   * Transaction interval default is 10
+   * Fluctuation of transactions is set to 2
+   * Model transactions are balanced to spread out to the number of destinations (FanIn and FanOut)
+   * Agent start step (within account)
+   * Target step of a single normal transaction (within SingleTransactionModel)
+   * SingleTransactionalModel has only transaction move all money out
+
 
 ## Distributions/Random Assumptions
 * Transaction Amounts
 * Account Types
     * Transaction amounts
 * Different tier based on income
-* Accounts with larger degree than a given threshold (currently 10) will be in poll of possible alert candidates
+    * Accounts with larger degree than a given threshold (currently 10) will be in poll of possible alert candidates
 * Frequency of TX model types
-* Agent start step (within account)
-* Target step of a single normal transaction (within SingleTransactionModel)
-* Model transactions are balanced to spread out to the number of destinations (FanIn and FanOut)
-* Transaction interval default is 10
-* Fluctuation of transactions is set to 2
-* SingleTransactionalModel has only transaction move all money out
 * Degree distribution of network is purely random
 
-## Additional Transaction Modles
+## Additional Transaction Models
 
 ## Time
 * Steps as days, but need start date for Transaction logs
