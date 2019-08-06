@@ -326,6 +326,7 @@ Building a new transaction type can be done through the following (**CAUTION: Th
 # TODO
 
 ## General Additions
+* Output file naming conventions
 * Additional Account for Businesses
     * Maybe new account/transaction model that inherits from abstractTXmodel or clients
 * Multi-institutions
