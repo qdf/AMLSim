@@ -325,7 +325,34 @@ Building a new transaction type can be done through the following (**CAUTION: Th
 
 # TODO
 
+## General Additions
+* Additional Account for Businesses
+    * Maybe new account/transaction model that inherits from abstractTXmodel or clients
+* Multi-institutions
+* New Transaction Types
+* Have goals of clients and account, help set logic of why they are conducting the transactions they are
+* Avoid hard 
 
+## Distributions/Random Assumptions
+* Transaction Amounts
+* Account Types
+    * Transaction amounts
+* Different tier based on income
+* Accounts with larger degree than a given threshold (currently 10) will be in poll of possible alert candidates
+* Frequency of TX model types
+* Agent start step (within account)
+* Target step of a single normal transaction (within SingleTransactionModel)
+* Model transactions are balanced to spread out to the number of destinations (FanIn and FanOut)
+* Transaction interval default is 10
+* Fluxuction of transactions is set to 2
+* SingleTransactionalModel has only transaction move all money out
+* Degree distribution of network is purely random
+
+## Additional Transaction Modles
+
+## Time
+
+## Validation Work/Analyses
 
 # Issues Concerns
 
