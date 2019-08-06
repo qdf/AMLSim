@@ -351,8 +351,11 @@ Building a new transaction type can be done through the following (**CAUTION: Th
 ## Additional Transaction Modles
 
 ## Time
+* Steps as days, but need start date for Transaction logs
 
 ## Validation Work/Analyses
+* Need to verify that structural representations are present and how often do they occur intentionally vs. unintentionally
+* Go through step by step process on building new fraud transaction types
 
 # Issues Concerns
 
