@@ -7,6 +7,13 @@ All that is needed to run this is by running the shell script pipline.sh from th
 sh pipline.sh
 ```
 
+# To Build Docker Container
+Download the docker file within the repo (named Dockerfile), then run this command within that directroy
+```
+docker build --build-arg BASE_IMAGE_TAG==3.9.0.40 Dockerfile 
+```
+
+
 # Fixes and TODO on Functionalities
 - Less Hard Coded Information within property files
   - make this more user friendly, i.e. so people can specify within docker file instead of property files
