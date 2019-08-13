@@ -4,7 +4,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.*;
 
 /**
@@ -108,7 +107,8 @@ public class TransactionRepository {
         return (int)(d * 100) / 100.0;
     }
 
-    public void writeCounterLog(long steps, String fname){
+    @SuppressWarnings("resource")
+	public void writeCounterLog(long steps, String fname){
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fname));
             writer.write("step,normal,fraud\n");

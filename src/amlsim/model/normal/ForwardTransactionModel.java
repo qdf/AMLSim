@@ -9,7 +9,8 @@ import java.util.*;
  * Send money received from an account to another account in a similar way
  */
 public class ForwardTransactionModel extends AbstractTransactionModel {
-    private int index = 0;
+    @SuppressWarnings("unused")
+	private int index = 0;
     private static final int INTERVAL = 10;
 
     @Override

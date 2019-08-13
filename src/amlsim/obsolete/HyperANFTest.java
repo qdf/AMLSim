@@ -8,7 +8,8 @@ public class HyperANFTest {
 
     private static final int DISTANCE = 50;
 
-    public static void main(String[] args) {
+    @SuppressWarnings("static-access")
+	public static void main(String[] args) {
         try{
             BVGraph graph = BVGraph.load(args[0], 2);
             System.out.println("Nodes: " + graph.numNodes());

@@ -9,6 +9,7 @@ import sim.engine.SimState;
 import sim.engine.Steppable;
 import java.util.*;
 
+@SuppressWarnings("serial")
 public class Account extends Client implements Steppable {
 
 //	protected long id;
