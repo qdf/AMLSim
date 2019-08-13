@@ -70,48 +70,48 @@ print("TRANFERRING BENIFACTOR ID TO TX LOG")
 tx_data["ben_cust_id"] = tx_data.apply(lambda row : acct_cust_dict[row["nameOrig"]]["ben_cust_id"],axis=1)
 print("DONE")
 
-new_wire_tx = pd.DataFrame(columns=[
-            "orig_nm",
-            "orig_cust_id",
-            "orig_acct_id",
-            "orig_bank_nm",
-            "orig_cntry_cd",
-            "ben_nm",
-            "ben_bank_nm",
-            "ben_cntry",
-            "ben_instr_txt",
-            "credit_or_debit",
-            "txn_amt",
-            "transfer_type",
-            "transfer_dt",
-            "txn_ref",
-            "ben_cust_id",
-            "ben_acct_id"
-        ])
-
-bank_names = [barnum.create_company_name() for i in range(30)]
-    
-new_wire_tx["orig_nm"] = tx_data.apply(lambda row : acct_cust_dict[row["nameOrig"]]["display_nm"],axis=1)
-new_wire_tx["orig_cust_id"] = tx_data["orig_cust_id"]
-new_wire_tx["orig_acct_id"] = tx_data["nameOrig"]
-new_wire_tx["orig_bank_nm"] = np.random.choice(bank_names)
-new_wire_tx["orig_cntry_cd"] = tx_data.apply(lambda row : acct_cust_dict[row["nameOrig"]]["cntry_cd"],axis=1)
-
-new_wire_tx["ben_nm"] = tx_data.apply(lambda row : acct_cust_dict[row["nameOrig"]]["display_nm"],axis=1)
-new_wire_tx["ben_bank_nm"] = np.random.choice(bank_names)
-new_wire_tx["ben_cntry"] = tx_data.apply(lambda row : acct_cust_dict[row["nameOrig"]]["cntry_cd"],axis=1)
-new_wire_tx["ben_instr_txt"] = "TRANSFER"
-
-new_wire_tx["credit_or_debit"] = "DEBIT"
-new_wire_tx["txn_amt"] = tx_data["amount"]
-new_wire_tx["transfer_type"] = tx_data["type"]
-new_wire_tx["transfer_dt"] = tx_data.apply(lambda row : date_map[row["step"]],axis=1)
-new_wire_tx["txn_ref"] = pd.series(range(1,tx_data.shape[0]+1))
-new_wire_tx["ben_cust_id"] = tx_data["ben_cust_id"]
-new_wire_tx["ben_acct_id"] = tx_data["nameOrig"]
+#new_wire_tx = pd.DataFrame(columns=[
+#            "orig_nm",
+#            "orig_cust_id",
+#            "orig_acct_id",
+#            "orig_bank_nm",
+#            "orig_cntry_cd",
+#            "ben_nm",
+#            "ben_bank_nm",
+#            "ben_cntry",
+#            "ben_instr_txt",
+#            "credit_or_debit",
+#            "txn_amt",
+#            "transfer_type",
+#            "transfer_dt",
+#            "txn_ref",
+#            "ben_cust_id",
+#            "ben_acct_id"
+#        ])
+#
+#bank_names = [barnum.create_company_name() for i in range(30)]
+#    
+#new_wire_tx["orig_nm"] = tx_data.apply(lambda row : acct_cust_dict[row["nameOrig"]]["display_nm"],axis=1)
+#new_wire_tx["orig_cust_id"] = tx_data["orig_cust_id"]
+#new_wire_tx["orig_acct_id"] = tx_data["nameOrig"]
+#new_wire_tx["orig_bank_nm"] = np.random.choice(bank_names)
+#new_wire_tx["orig_cntry_cd"] = tx_data.apply(lambda row : acct_cust_dict[row["nameOrig"]]["cntry_cd"],axis=1)
+#
+#new_wire_tx["ben_nm"] = tx_data.apply(lambda row : acct_cust_dict[row["nameOrig"]]["display_nm"],axis=1)
+#new_wire_tx["ben_bank_nm"] = np.random.choice(bank_names)
+#new_wire_tx["ben_cntry"] = tx_data.apply(lambda row : acct_cust_dict[row["nameOrig"]]["cntry_cd"],axis=1)
+#new_wire_tx["ben_instr_txt"] = "TRANSFER"
+#
+#new_wire_tx["credit_or_debit"] = "DEBIT"
+#new_wire_tx["txn_amt"] = tx_data["amount"]
+#new_wire_tx["transfer_type"] = tx_data["type"]
+#new_wire_tx["transfer_dt"] = tx_data.apply(lambda row : date_map[row["step"]],axis=1)
+#new_wire_tx["txn_ref"] = pd.Series(range(1,tx_data.shape[0]+1))
+#new_wire_tx["ben_cust_id"] = tx_data["ben_cust_id"]
+#new_wire_tx["ben_acct_id"] = tx_data["nameOrig"]
 
 
 print("WRITING NEW LOGS")
 tx_data.to_csv(os.path.join(output_dir,"cust_acct_tx_generation_log.csv"))
-new_wire_tx.to_csv(os.path.join(output_dir,"wire_txn_data.csv"))
+#new_wire_tx.to_csv(os.path.join(output_dir,"wire_txn_data.csv"))
 print("DONE")
