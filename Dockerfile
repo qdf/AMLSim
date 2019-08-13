@@ -15,7 +15,7 @@ RUN sudo yum update -y && sudo yum install -y \
         java-devel \
         libcurl3-dev \
         pkg-config \
-        python-dev \
+        rh-python36 \
         rsync \
         software-properties-common \
         unzip \
@@ -23,10 +23,10 @@ RUN sudo yum update -y && sudo yum install -y \
         zlib1g-dev
 
 RUN sudo curl -fSsL -O https://bootstrap.pypa.io/get-pip.py && \
-    sudo python get-pip.py && \
+    sudo python3 get-pip.py && \
     rm get-pip.py
 
-RUN sudo pip install \
+RUN sudo pip3 install \
         numpy==1.14.3 \
         pandas==0.23.0 \
         dill==0.2.7.1 \
