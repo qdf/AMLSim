@@ -13,7 +13,7 @@ echo "DONE"
 echo "RUNNING AMLSIM"
 java -XX:+UseConcMarkSweepGC -XX:ParallelGCThreads=2 -Xms2g -Xmx30g -cp "jars/*:bin" amlsim.AMLSim -file amlsim.properties -for 150 -r 1 -name cust_acct_tx_generation
 
-#python scripts/move_files_to_output_dir.py
+python scripts/move_files_to_output_dir.py
 
 echo "DATA GENERATION COMPLETE"
 echo "DATA LOCATED WITHIN outputs/cust_acct_tx_generation"
