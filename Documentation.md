@@ -310,15 +310,30 @@ Conducts a series of fraud transactions between three sets of accounts. The firs
 ---
 
 # How to build fraud transaction types
-Building a new transaction type can be done through the following (**CAUTION: This process has not been tested and is currently based on code walk + read throughs**):
 
-1. Build a new class which has either the FraudTransactionModel or AbstractTransactionModel as the super class (determined through if you want to build a fraud or normal transaction). Please place this transaction in the appropriate module (Fraud transaction types go into amlsim.model.fraud, while normal transactions go into amlsim.model.normal). 
-2. Within transaction classes, a getType() function is needed along with a sendTransactions() function, both need to override the super class function. sendTransaction() determines the logic behind the transaction so define this to handle the pattern you have determined is needed.
-3. Add transaction type to the transaction model IDs within the AbstractTransactionModel, make sure there is a distinguishable name for this new transaction (try to make it stand out compared to others, i.e. don't name it forward...). If you are adding a Fraud transaction model, then add this to the FraudTransaction type and don't add to the AbstractTransactionModel.
-4. Add transaction case to the Account or FraudAccount class (determined by if you are making a Fraud transaction type or Normal transaction type). This is within each constructor, you should see a switch statement with other transaction types being initialized.
-5. Add transaction type to the Python script transaction_graph_generator.py within the self.alert_types dictionary in the __init__ function of the TransactionGenerator. 
-6. Build the subgraph within the add_alert_pattern function, first add a conditional with pattern_type == "<type_name>", then construct a subgraph in a similar fashion to existing pattern types (fan_in, fan_out, and bipartite are good simple examples, look at dense, mixed, stack, and cycle for more complex examples).
-6. Done (**Need to verify this**)!
+1. ### Build a new class which has either the FraudTransactionModel or AbstractTransactionModel as the super class 
+ Depending on whether you want to build a fraud or normal transaction, please place this transaction in the appropriate module (Fraud transaction types go into amlsim.model.fraud, while normal transactions go into amlsim.model.normal). 
+
+2. ### Within transaction classes, a getType() function is needed along with a sendTransactions() function
+  Both need to override the super class function. sendTransaction() determines the logic behind the transaction so define this to handle the pattern you have determined is needed.
+
+3. ### Add transaction type to the transaction model IDs within the AbstractTransactionModel or FraudTransactionModel
+   Make sure there is a distinguishable name for this new transaction (try to make it stand out compared to others, i.e. don't name it forward...)
+
+   eg.  public static final int TEST_FRAUD_TRANSACTION_TYPE = 7;
+
+4. ### Add the transaction case to the Account.java or FraudTransactionModel.java
+   Add the transaction case to the switch statement in the following functions:
+   Account.java : public account()
+   or
+   FraudTransactionModel.java: public static FraudTransactionModel getModel(....)
+   
+5. ### In the file *transaction_graph_generator.py*:
+   - In the __init__(...) function, add the new alert name and model ID to the self.alert_types dictionary
+   - In the add_alert_pattern(...) function, build the subgraph within the add_alert_pattern function, first add a conditional with pattern_type == "<type_name>", then construct a subgraph in a similar fashion to existing pattern types (fan_in, fan_out, and bipartite are good simple examples, look at dense, mixed, stack, and cycle for more complex examples).
+   
+6. *Done!*
+   
 
 ---
 
