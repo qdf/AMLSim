@@ -15,12 +15,17 @@ RUN sudo yum update -y && sudo yum install -y \
         java-devel \
         libcurl3-dev \
         pkg-config \
+        centos-release-scl \
         rh-python36 \
         rsync \
         software-properties-common \
         unzip \
         zip \
         zlib1g-dev
+
+RUN scl enable rh-python36 bash && python --version
+
+RUN python --version
 
 RUN sudo curl -fSsL -O https://bootstrap.pypa.io/get-pip.py && \
     sudo python3 get-pip.py && \
