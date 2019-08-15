@@ -1,0 +1,37 @@
+{
+    "n_fi":
+        {
+            "description": "number of financial institutions the user wishes to generate.",
+            "value": 5
+        },
+    "fi_types":
+        {
+            "description": "different types of financial institutions.",
+            "value":
+                {
+                    "BANK":
+                        {
+                            "description": "financial institutions type is bank. Contains the percentage of total financial institutions to assign as banks. Additionally, it also provides the filename of the 'bank' config file.",
+                            "value": 100.0,
+                            "filename": "fi_type_bank_config.json"
+                        }
+                }
+        }
+    "column_names":
+        {
+            "description": "column names of the various financial institutions fields to populate in the DB. The column names must be specified in the same order as they are listed in the DB.",
+            "value":
+            {
+                "fb_fi":
+                    {
+                        "description": "column names associated with the fb_fi table.",
+                        "value": ["bank_id", "bank_name" ],
+                    },
+                "fb_bank_customers":
+                    {
+                        "description": "column names associated with the fb_bank_customers table."
+                        "value": ["bank_id","bank_name","customer_id","account_id"]
+                    },
+            }
+        }
+}
