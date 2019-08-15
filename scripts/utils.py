@@ -28,8 +28,8 @@ def write_data_to_machine(df, file_name):
     """
 
     output_directory = "output_datasets/"
-    current_time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-    comb_file_name = file_name + "_" + current_time
+#    current_time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+    comb_file_name = file_name #+ "_" + current_time
     df.to_csv(output_directory + comb_file_name + ".csv", index=False)
     print("Done writing " + output_directory + comb_file_name + ".csv")
 
