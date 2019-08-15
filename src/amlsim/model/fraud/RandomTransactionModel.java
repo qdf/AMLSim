@@ -14,7 +14,8 @@ import java.util.List;
  */
 public class RandomTransactionModel extends FraudTransactionModel {
 
-    private static int count = 0;
+    @SuppressWarnings("unused")
+	private static int count = 0;
 
     @Override
     public void setSchedule(int modelID) {

@@ -8,6 +8,7 @@ import java.util.Map;
 /**
  * Suspicious account class
  */
+@SuppressWarnings("serial")
 public class FraudAccount extends Account {
 
 	private int count = 0;

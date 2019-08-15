@@ -3,7 +3,6 @@ package amlsim.model.normal;
 import amlsim.*;
 import amlsim.model.AbstractTransactionModel;
 
-import static java.lang.Math.min;
 import java.util.*;
 
 /**

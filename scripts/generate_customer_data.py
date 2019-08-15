@@ -77,8 +77,8 @@ class generate_cust_data(ip_data, read_cust_config_data):
     def read_cust_type_config_files(self):
 
         # Create a variable to store the different customer types
-        self.cust_types = self.cust_config_data[
-                'customer_types']['value'].keys()
+        self.cust_types = list(self.cust_config_data[
+                'customer_types']['value'].keys())
 
         # Get the config file names corresponding to the customer type
         cust_type_config_filename = {}
@@ -173,24 +173,24 @@ class generate_cust_data(ip_data, read_cust_config_data):
 
         # @ray.remote
         # def gen_uuid():
-        #     return [str(uuid.uuid4()) for _ in xrange(recs_per_core)]
+        #     return [str(uuid.uuid4()) for _ in range(recs_per_core)]
 
         # # Generate the customer ids
         # dummy_cust_ids = ray.get(
-        #         [gen_uuid.remote() for _ in xrange(cores_use)])
+        #         [gen_uuid.remote() for _ in range(cores_use)])
         # # Flatten the list of lists
         # cust_ids = [
         #         item for sublist in dummy_cust_ids for item in sublist]
 
         # Generate customer ids for normal customers
         cust_ids = ["C-"+str(uuid.uuid4()).replace('-', '')
-                    for _ in xrange(self.n_customers)]
+                    for _ in range(self.n_customers)]
 
         # Add customer ids to the fb_customer dataset
         self.fb_customer = pd.DataFrame(
                 np.array(cust_ids), columns=[self.cust_id_col])
 
-        print "DONE GENERATING THE CUSTOMER IDS."
+        print("DONE GENERATING THE CUSTOMER IDS.")
 
     def _det_cust_type_counts(self):
 
@@ -222,7 +222,7 @@ class generate_cust_data(ip_data, read_cust_config_data):
         self.fb_customer[self.cust_type_col] = np.random.choice(
                 self.cust_types, size=self.n_customers, p=cust_types_probs)
 
-        print "DONE GENERATING THE CUSTOMER TYPES."
+        print("DONE GENERATING THE CUSTOMER TYPES.")
 
         # Determine the count of the various customer types
         self._det_cust_type_counts()
@@ -238,22 +238,22 @@ class generate_cust_data(ip_data, read_cust_config_data):
 
         # @ray.remote
         # def gen_nm():
-        #     return [fake.name() for _ in xrange(recs_per_core)]
+        #     return [fake.name() for _ in range(recs_per_core)]
 
         # # Generate the customer names
         # dummy_cust_nm = ray.get(
-        #         [gen_nm.remote() for _ in xrange(cores_use)])
+        #         [gen_nm.remote() for _ in range(cores_use)])
         # # Flatten the list of lists
         # cust_nm = [item for sublist in dummy_cust_nm for item in sublist]
 
         # Generate customer names
-        cust_nm = [fake.name() for _ in xrange(self.n_customers)]
+        cust_nm = [fake.name() for _ in range(self.n_customers)]
 
         # Add the customer names to the fb_customer dataframe
         self.fb_customer[self.display_nm_col] = np.array(cust_nm)
 
-        print "DONE GENERATING THE CUSTOMER NAMES FOR CUSTOMER TYPE - \
-        INDIVIDUALS."
+        print("DONE GENERATING THE CUSTOMER NAMES FOR CUSTOMER TYPE - \
+        INDIVIDUALS.")
 
     def _gen_org_cust_nm(self, c_type):
 
@@ -265,19 +265,19 @@ class generate_cust_data(ip_data, read_cust_config_data):
 #
 #        @ray.remote
 #        def gen_org():
-#            return [fake.company() for _ in xrange(recs_per_core)]
+#            return [fake.company() for _ in range(recs_per_core)]
 #
 #        # Generate the ORG names
 #        self.dummy_org_nm = ray.get(
-#                [gen_org.remote() for _ in xrange(cores_use)])
+#                [gen_org.remote() for _ in range(cores_use)])
 #        # Flatten the list of lists
 #        self.org_nm = [
 #                item for sublist in self.dummy_org_nm for item in sublist]
-#        print len(self.org_nm)
+#        print(len(self.org_nm))
 
         # Generate the ORG names
         c_type_count = self.cust_type_counts[c_type]
-        org_nm = [barnum.create_company_name() for _ in xrange(c_type_count)]
+        org_nm = [barnum.create_company_name() for _ in range(c_type_count)]
 
         # There seems to be a problem when trying to add the organization
         # names to the existing modin series. To resolve the issue its best
@@ -292,8 +292,8 @@ class generate_cust_data(ip_data, read_cust_config_data):
 #                    org_ind, np.array(self.org_nm), inplace=True)
         self.fb_customer[self.display_nm_col] = disp_nm_arr
 
-        print "DONE GENERATING THE CUSTOMER NAMES FOR CUSTOMER TYPE - \
-        ORGANIZATIONS."
+        print("DONE GENERATING THE CUSTOMER NAMES FOR CUSTOMER TYPE - \
+        ORGANIZATIONS.")
 
     def gen_cust_nm(self):
 
@@ -311,13 +311,13 @@ class generate_cust_data(ip_data, read_cust_config_data):
             elif i.lower() in "organization":
                 self._gen_org_cust_nm(i)
 
-        print "DONE GENERATING THE CUSTOMER NAMES."
+        print("DONE GENERATING THE CUSTOMER NAMES.")
 
     def gen_pep_cust_data(self):
 
         # Generate customer ids for PEP customers
         pep_cust_ids = ["PEP-C-"+str(uuid.uuid4()).replace('-', '')
-                        for _ in xrange(self.n_customers_pep)]
+                        for _ in range(self.n_customers_pep)]
 
         # Sample customer names and customer types from the PEP data
         pep_sample_data = self.pep_data[['name', 'type']].sample(
@@ -347,7 +347,7 @@ class generate_cust_data(ip_data, read_cust_config_data):
                                      pep_sample_data], ignore_index=True,
                                      sort=False)
 
-        print "DONE ADDING PEP NAMES."
+        print("DONE ADDING PEP NAMES.")
 
         # Determine the count of the various customer types
         self._det_cust_type_counts()
@@ -359,7 +359,7 @@ class generate_cust_data(ip_data, read_cust_config_data):
 
         # Generate customer ids for watchlist customers
         wl_cust_ids = ["WL-C-"+str(uuid.uuid4()).replace('-', '')
-                       for _ in xrange(self.n_customers_sanc)]
+                       for _ in range(self.n_customers_sanc)]
 
         # Sample customer names and customer types from the watchlist data
         wl_sample_data = self.ofac_wl_data[['entity_nm',
@@ -395,7 +395,7 @@ class generate_cust_data(ip_data, read_cust_config_data):
                                       wl_sample_data], ignore_index=True,
                                      sort=False)
 
-        print "DONE ADDING WATCHLIST NAMES."
+        print("DONE ADDING WATCHLIST NAMES.")
 
         # Determine the count of the various customer types
         self._det_cust_type_counts()
@@ -467,7 +467,7 @@ class generate_cust_data(ip_data, read_cust_config_data):
         # Add the COB data to the dataframe
         self.fb_customer[self.cob_ctry_col] = cob_arr
 
-        print "DONE GENERATING COUNTRY OF BIRTH."
+        print("DONE GENERATING COUNTRY OF BIRTH.")
 
     def gen_cust_cor(self):
 
@@ -485,7 +485,7 @@ class generate_cust_data(ip_data, read_cust_config_data):
         # Add country of residence column to the dataframe
         self.fb_customer[self.cor_ctry_col] = cor_arr
 
-        print "DONE GENERATING COUNTRY OF RESIDENCE."
+        print("DONE GENERATING COUNTRY OF RESIDENCE.")
 
     def gen_cust_status(self):
 
@@ -506,7 +506,7 @@ class generate_cust_data(ip_data, read_cust_config_data):
         # Add customer status to the customer dataframe
         self.fb_customer[self.cust_status_col] = cust_status
 
-        print "DONE GENERATING CUSTOMER STATUS."
+        print("DONE GENERATING CUSTOMER STATUS.")
 
     def __gen_annual_income_var(self):
 
@@ -628,7 +628,7 @@ class generate_cust_data(ip_data, read_cust_config_data):
         # Add customer annual income to the customer dataframe
         self.fb_customer[self.annual_income_col] = annual_income
 
-        print "DONE GENERATING ANNUAL INCOME."
+        print("DONE GENERATING ANNUAL INCOME.")
 
     def gen_income_range(self):
 
@@ -662,7 +662,7 @@ class generate_cust_data(ip_data, read_cust_config_data):
         # Add customer income range to the customer dataframe
         self.fb_customer[self.income_range_col] = income_range
 
-        print "DONE GENERATING INCOME RANGE."
+        print("DONE GENERATING INCOME RANGE.")
 
     def gen_bus_domain(self):
 
@@ -687,7 +687,7 @@ class generate_cust_data(ip_data, read_cust_config_data):
         # Add customer business domain to the customer dataframe
         self.fb_customer[self.bus_domain_nm_col] = bus_domain
 
-        print "DONE GENERATING BUSINESS DOMAIN."
+        print("DONE GENERATING BUSINESS DOMAIN.")
 
     def gen_jurisdiction(self):
 
@@ -708,27 +708,27 @@ class generate_cust_data(ip_data, read_cust_config_data):
         # Add customer business domain to the customer dataframe
         self.fb_customer[self.jurisdiction_col] = jurisdiction
 
-        print "DONE GENERATING JURISDICTION."
+        print("DONE GENERATING JURISDICTION.")
 
     def gen_address_id(self):
 
         # Generate address ids for each customer record
         adrs_id = ["ADR-"+str(uuid.uuid4()).replace('-', '')
-                   for _ in xrange(self.tot_customers)]
+                   for _ in range(self.tot_customers)]
 
         # Add address ids to the fb_address dataset
         self.fb_address = pd.DataFrame(
             np.array(adrs_id), columns=[self.adrs_id_col])
 
-        print "DONE GENERATING THE ADDRESS IDS."
+        print("DONE GENERATING THE ADDRESS IDS.")
 
     def gen_city_nm(self):
 
         # Generate city name for each customer record
         self.fb_address[self.city_nm_col] = [
-            fake.city() for _ in xrange(self.tot_customers)]
+            fake.city() for _ in range(self.tot_customers)]
 
-        print "DONE GENERATING THE CITY NAMES."
+        print("DONE GENERATING THE CITY NAMES.")
 
     def gen_adrs_cntry_cd(self):
 
@@ -736,52 +736,52 @@ class generate_cust_data(ip_data, read_cust_config_data):
         self.fb_address[self.cntry_cd_col] = self.fb_customer[
             self.cor_ctry_col].values
 
-        print "DONE GENERATING COUNTRY NAMES FOR EACH ADDRESS."
+        print("DONE GENERATING COUNTRY NAMES FOR EACH ADDRESS.")
 
     def gen_postal_cd(self):
 
         # Assign postal code values to each address record
         self.fb_address[self.postal_cd_col] = [
-            str(fake.postalcode()) for _ in xrange(self.tot_customers)]
+            str(fake.postalcode()) for _ in range(self.tot_customers)]
 
-        print "DONE GENERATING POSTAL CODES."
+        print("DONE GENERATING POSTAL CODES.")
 
     def gen_state_cd(self):
 
         # Assign state code values to each address record
         self.fb_address[self.state_cd_col] = [
-            fake.state() for _ in xrange(self.tot_customers)]
+            fake.state() for _ in range(self.tot_customers)]
 
-        print "DONE GENERATING STATE CODES."
+        print("DONE GENERATING STATE CODES.")
 
     def gen_street_adrs(self):
 
         # Assign street code values to each address record
         self.fb_address[self.street_line1_txt_col] = [
-            fake.street_address() for _ in xrange(self.tot_customers)]
+            fake.street_address() for _ in range(self.tot_customers)]
 
-        print "DONE GENERATING STREET ADDRESS."
+        print("DONE GENERATING STREET ADDRESS.")
 
     def gen_phone_id(self):
 
         # Generate address ids for each customer record
         phone_id = ["PH-"+str(uuid.uuid4()).replace('-', '')
-                    for _ in xrange(self.tot_customers)]
+                    for _ in range(self.tot_customers)]
 
         # Add phone ids to the fb_phone dataset
         self.fb_phone = pd.DataFrame(
             np.array(phone_id), columns=[self.phone_id_col])
 
-        print "DONE GENERATING PHONE IDS."
+        print("DONE GENERATING PHONE IDS.")
 
     def gen_phone_number(self):
 
         # Assign phone numbers
         self.fb_phone[self.phone_num_col] = [
-            fake.phone_number() for _ in xrange(self.tot_customers)
+            fake.phone_number() for _ in range(self.tot_customers)
         ]
 
-        print "DONE GENERATING PHONE NUMBERS."
+        print("DONE GENERATING PHONE NUMBERS.")
 
     def data(self):
 
@@ -858,8 +858,8 @@ class generate_cust_data(ip_data, read_cust_config_data):
         self.comb_cust_df = self.comb_cust_df[self.seq_col_nm]
 
         # Determine the time taken to generate the customer dataset
-        print "Time taken to generate customer data: ", \
-            time.time() - start_time, " secs"
+        print("Time taken to generate customer data: ", \
+            time.time() - start_time, " secs")
 
 
 if __name__ == '__main__':

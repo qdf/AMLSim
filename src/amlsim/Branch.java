@@ -4,6 +4,7 @@ package amlsim;
  * A branch of a bank
  * In cash transactions, this class perform like an account
  */
+@SuppressWarnings("serial")
 public class Branch extends Account {
 
     private int id;  // Branch identifier

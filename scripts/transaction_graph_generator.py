@@ -140,7 +140,7 @@ class TransactionGenerator:
       candidates = set()
       while len(candidates) < num:  # Get sufficient alert members
         hub = random.choice(self.hubs)
-        candidates.update([hub]+self.g.adj[hub].keys())
+        candidates.update([hub]+list(self.g.adj[hub].keys()))
       members = np.random.choice(list(candidates), num, False)
       candidates_set = set(members) & self.subject_candidates
       if not candidates_set:
@@ -378,13 +378,14 @@ class TransactionGenerator:
       """
       in_deg = list()  # In-degree sequence
       out_deg = list()  # Out-degree sequence
-      with open(deg_csv, "r") as rf:  # Load in/out-degree sequences from parameter CSV file for each account
-        reader = csv.reader(rf)
-        headers = reader.next()
+      acct_id = list()  # Acct_id sequence
+      with open(deg_csv, "rt") as rf:  # Load in/out-degree sequences from parameter CSV file for each account
+        reader = csv.DictReader(rf)
         #next(reader)
         for row in reader:
-          in_deg.append(int(row[headers.index("In-degree")]))
-          out_deg.append(int(row[headers.index("Out-degree")]))
+          in_deg.append(int(row["In-degree"]))
+          out_deg.append(int(row["Out-degree"]))
+          acct_id.append(row["account_id"])
           #nv = int(row[0])
           #in_deg.extend(int(row[1]) * [nv])
           #out_deg.extend(int(row[2]) * [nv])
@@ -417,18 +418,18 @@ class TransactionGenerator:
         out_deg.extend([1] * remain)
 
       assert sum(in_deg) == sum(out_deg), "Sequences must have equal sums."
-      return in_deg, out_deg
+      return in_deg, out_deg, acct_id
 
 
-    in_deg, out_deg = get_degrees(degcsv, self.num_accounts)
+    in_deg, out_deg, acct_id = get_degrees(degcsv, self.num_accounts)
     # print(sum(in_deg), sum(out_deg))
     g = nx.generators.degree_seq.directed_configuration_model(in_deg, out_deg, seed=0)  # Generate a directed graph from degree sequences (not transaction graph)
 
     print("Add %d base transactions" % g.number_of_edges())
-    nodes = self.g.nodes()
+#    nodes = self.g.nodes()
     for src_i, dst_i in g.edges():
-      src = nodes[src_i]
-      dst = nodes[dst_i]
+      src = acct_id[src_i]
+      dst = acct_id[dst_i]
       self.add_transaction(src, dst)  # Add edges to transaction graph
 
 
@@ -869,14 +870,14 @@ class TransactionGenerator:
     """Write alert account list
     """
     def get_outEdge_attrs(g, vid, name):
-      return [v for k, v in nx.get_edge_attributes(g, name).iteritems() if (k[0] == vid or k[1] == vid)]
+      return [v for k, v in nx.get_edge_attributes(g, name).items() if (k[0] == vid or k[1] == vid)]
 
     fname = os.path.join(self.output_dir, self.conf.get("OutputFile", "alert_members"))
     with open(fname, "w") as wf:
       writer = csv.writer(wf)
       base_attrs = ["alertID", "reason", "clientID", "isSubject", "modelID", "minAmount", "maxAmount", "startStep", "endStep", "scheduleID"]
       writer.writerow(base_attrs + self.attr_names)
-      for gid, sub_g in self.alert_groups.iteritems():
+      for gid, sub_g in self.alert_groups.items():
         modelID = sub_g.graph["modelID"]
         scheduleID = sub_g.graph["scheduleID"]
         reason = sub_g.graph["reason"]

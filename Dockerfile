@@ -15,18 +15,23 @@ RUN sudo yum update -y && sudo yum install -y \
         java-devel \
         libcurl3-dev \
         pkg-config \
-        python-dev \
+        centos-release-scl \
+        rh-python36 \
         rsync \
         software-properties-common \
         unzip \
         zip \
         zlib1g-dev
 
+RUN scl enable rh-python36 bash && python --version
+
+RUN python --version
+
 RUN sudo curl -fSsL -O https://bootstrap.pypa.io/get-pip.py && \
-    sudo python get-pip.py && \
+    sudo python3 get-pip.py && \
     rm get-pip.py
 
-RUN sudo pip install \
+RUN sudo pip3 install \
         numpy==1.14.3 \
         pandas==0.23.0 \
         dill==0.2.7.1 \

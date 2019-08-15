@@ -154,19 +154,19 @@ class generate_act_data(read_act_config_data):
         # currently operating.
         self.sum_act_nbr_customer = np.sum(self.nbr_act_nbr_customer)
 
-        print "DONE ASSIGNING ACCOUNT PER CUSTOMER."
+        print("DONE ASSIGNING ACCOUNT PER CUSTOMER.")
 
     def gen_act_id(self):
 
         # Generate account ids
         act_ids = ["AC-"+str(uuid.uuid4()).replace('-', '')
-                    for _ in xrange(self.sum_act_nbr_customer)]
+                    for _ in range(self.sum_act_nbr_customer)]
 
         # Add customer ids to the fb_customer dataset
         self.fb_account = pd.DataFrame(
             np.array(act_ids), columns=[self.act_id_col])
 
-        print "DONE GENERATING THE ACCOUNT IDS."
+        print("DONE GENERATING THE ACCOUNT IDS.")
 
     def assign_primary_cust_id(self):
 
@@ -180,7 +180,7 @@ class generate_act_data(read_act_config_data):
         # Assign primary customer id to the account dataframe
         self.fb_account[self.primary_cust_id_col] = customer_id
 
-        print "DONE ASSIGNING PRIMARY CUSTOMER ID."
+        print("DONE ASSIGNING PRIMARY CUSTOMER ID.")
 
         # Merge the customer dataframe with the account dataframe
         self.merge_cust_act = self.cust_data.merge(self.fb_account,
@@ -194,7 +194,7 @@ class generate_act_data(read_act_config_data):
         self.fb_account[self.bus_domain_col] = self.merge_cust_act[
             self.cust_col_nm['cust_bus_domain_col']].values
 
-        print "DONE ASSGINING BUSINESS DOMAIN TO ACCOUNT DATAFRAME."
+        print("DONE ASSGINING BUSINESS DOMAIN TO ACCOUNT DATAFRAME.")
 
     def assign_jurisdiction(self):
 
@@ -202,7 +202,7 @@ class generate_act_data(read_act_config_data):
         self.fb_account[self.jurisdiction_col] = self.merge_cust_act[
             self.cust_col_nm['cust_jurisdiction_col']].values
 
-        print "DONE ASSIGNING JURISDICTION TO THE ACCOUNT DATAFRAME."
+        print("DONE ASSIGNING JURISDICTION TO THE ACCOUNT DATAFRAME.")
 
     def assign_display_nm(self):
 
@@ -210,7 +210,7 @@ class generate_act_data(read_act_config_data):
         self.fb_account[self.display_nm_col] = self.merge_cust_act[
             self.cust_col_nm['cust_display_nm_col']].values
 
-        print "DONE ASSIGNING DISPLAY NAMES TO THE ACCOUNT DATAFRAME."
+        print("DONE ASSIGNING DISPLAY NAMES TO THE ACCOUNT DATAFRAME.")
 
     def gen_act_type(self):
 
@@ -219,16 +219,16 @@ class generate_act_data(read_act_config_data):
 
         # Randomly generate account types from the distribution provided in
         # the config file
-        act_type = np.random.choice(self.act_config_data['act_types'][
-            'value'].keys(),
+        act_type = np.random.choice(list(self.act_config_data['act_types'][
+            'value'].keys()),
             size=self.sum_act_nbr_customer,
             replace=True,
-            p=self.act_config_data['act_types']['value'].values())
+            p=list(self.act_config_data['act_types']['value'].values()))
 
         # Add the account types to the account dataframe
         self.fb_account[self.acct_type_col] = act_type
 
-        print "DONE WITH GENERATING ACCOUNT TYPES."
+        print("DONE WITH GENERATING ACCOUNT TYPES.")
 
     def gen_act_owner_type(self):
 
@@ -252,7 +252,7 @@ class generate_act_data(read_act_config_data):
         # Add the account ownership data to the account dataframe
         self.fb_account[self.ownership_type_col] = act_owner_type
 
-        print "DONE GENERATING ACCOUNT OWNERSHIP TYPE."
+        print("DONE GENERATING ACCOUNT OWNERSHIP TYPE.")
 
     def gen_act_purpose(self):
 
@@ -284,19 +284,19 @@ class generate_act_data(read_act_config_data):
                     act_purpose_probs.append(act_purpose_dict[j][k]['value'])
                 # Check if the sum of the probabilities is 1.0
                 if np.sum(act_purpose_probs) != 1.0:
-                    print "Sum of probabilities for account purpose do not sum to 1.0.", i, j
+                    print("Sum of probabilities for account purpose do not sum to 1.0.", i, j)
                 # Sample the account purpose
                 act_purpose[cond] = np.random.choice(
-                    act_purpose_vals,
+                    list(act_purpose_vals),
                     size=nbr_indices,
                     replace=True,
-                    p=act_purpose_probs
+                    p=list(act_purpose_probs)
                 )
 
         # Add the account purpose to the account dataframe
         self.fb_account[self.acct_purpose_col] = act_purpose
 
-        print "DONE GENERATING ACCOUNT PURPOSE."
+        print("DONE GENERATING ACCOUNT PURPOSE.")
 
     def gen_act_open_dt(self):
 
@@ -306,13 +306,13 @@ class generate_act_data(read_act_config_data):
         d2 = datetime.strptime(self.act_config_data[
             'open_account_date_range']['value'][1], '%m/%d/%Y %I:%M %p')
         self.act_open_dt = np.array([_random_date(d1, d2)
-                                     for _ in xrange(
+                                     for _ in range(
                                          self.sum_act_nbr_customer)])
 
         # Add account open date to the account dataframe
         self.fb_account[self.acct_open_dt_col] = self.act_open_dt
 
-        print "DONE GENERATING ACOCUNT OPEN DATE."
+        print("DONE GENERATING ACOCUNT OPEN DATE.")
 
     def gen_act_to_cust(self):
 
@@ -324,19 +324,19 @@ class generate_act_data(read_act_config_data):
         self.fb_acct_to_cust = pd.DataFrame(
             cust_ids, columns=[self.customer_id_col])
 
-        print "DONE ASSIGNING CUSTOMER IDS."
+        print("DONE ASSIGNING CUSTOMER IDS.")
 
     def gen_phone_id(self):
 
         # Generate address ids for each account record
         phone_id = ["PH-"+str(uuid.uuid4()).replace('-', '')
-                    for _ in xrange(self.sum_act_nbr_customer)]
+                    for _ in range(self.sum_act_nbr_customer)]
 
         # Add phone ids ids to the fb_phone dataset
         self.fb_phone = pd.DataFrame(
             np.array(phone_id), columns=[self.phone_id_col])
 
-        print "DONE GENERATING PHONE IDS."
+        print("DONE GENERATING PHONE IDS.")
 
     def gen_phone_number(self):
 
@@ -349,35 +349,35 @@ class generate_act_data(read_act_config_data):
         # Number of records to change
         nbr_change = int(self.act_config_data[
             'percent_act_ph_dfrnt']['value']/100.0)
-        indices_change = np.random.choice(xrange(self.sum_act_nbr_customer),
+        indices_change = np.random.choice(range(self.sum_act_nbr_customer),
             size=nbr_change, replace=False)
         phone_num[indices_change] = [
-            fake.phone_number() for _ in xrange(nbr_change)
+            fake.phone_number() for _ in range(nbr_change)
         ]
 
         # Add phone numbers to account phone dataframe
         self.fb_phone[self.phone_num_col] = phone_num
 
-        print "DONE GENERATING PHONE NUMBERS."
+        print("DONE GENERATING PHONE NUMBERS.")
 
     def gen_adrs_id(self):
 
         # Generate address ids for each account record
         adrs_id = ["ADR-"+str(uuid.uuid4()).replace('-', '')
-                   for _ in xrange(self.sum_act_nbr_customer)]
+                   for _ in range(self.sum_act_nbr_customer)]
 
         # Add address ids to the fb_address dataset
         self.fb_address = pd.DataFrame(
             np.array(adrs_id), columns=[self.adrs_id_col])
 
-        print "DONE GENERATING THE ADDRESS IDS."
+        print("DONE GENERATING THE ADDRESS IDS.")
 
         # Determine which address records are going to be changed
         # Number of records to change
         self.adrs_nbr_change = int(self.act_config_data[
             'percent_act_adrs_dfrnt']['value']/100.0)
         self.adrs_indices_change = np.random.choice(
-            xrange(self.sum_act_nbr_customer), size=self.adrs_nbr_change,
+            range(self.sum_act_nbr_customer), size=self.adrs_nbr_change,
             replace=False)
 
     def gen_city_nm(self):
@@ -388,12 +388,12 @@ class generate_act_data(read_act_config_data):
 
         # Generate city name for each account record
         city_nm[self.adrs_indices_change] = [
-            fake.city() for _ in xrange(self.adrs_nbr_change)]
+            fake.city() for _ in range(self.adrs_nbr_change)]
 
         # Address city name to fb_address dataset
         self.fb_address[self.city_nm_col] = city_nm
 
-        print "DONE GENERATING THE CITY NAMES."
+        print("DONE GENERATING THE CITY NAMES.")
 
     def gen_cntry(self):
 
@@ -401,7 +401,7 @@ class generate_act_data(read_act_config_data):
         self.fb_address[self.cntry_cd_col] = self.fb_account[
             self.jurisdiction_col]
 
-        print "DONE GENERATING THE COUNTRY NAMES."
+        print("DONE GENERATING THE COUNTRY NAMES.")
 
     def gen_postal_cd(self):
 
@@ -411,12 +411,12 @@ class generate_act_data(read_act_config_data):
 
         # Generate postal codes for each account record
         postal_cd[self.adrs_indices_change] = [
-            fake.postalcode() for _ in xrange(self.adrs_nbr_change)]
+            fake.postalcode() for _ in range(self.adrs_nbr_change)]
 
         # Address city name to fb_address dataset
         self.fb_address[self.postal_cd_col] = postal_cd
 
-        print "DONE GENERATING THE POSTAL CODES."
+        print("DONE GENERATING THE POSTAL CODES.")
 
     def gen_state_cd(self):
 
@@ -426,12 +426,12 @@ class generate_act_data(read_act_config_data):
 
         # Generate state codes for each account record
         state_cd[self.adrs_indices_change] = [
-            fake.state() for _ in xrange(self.adrs_nbr_change)]
+            fake.state() for _ in range(self.adrs_nbr_change)]
 
         # Address city name to fb_address dataset
         self.fb_address[self.state_cd_col] = state_cd
 
-        print "DONE GENERATING THE STATE CODES."
+        print("DONE GENERATING THE STATE CODES.")
 
     def gen_street_adrs(self):
 
@@ -441,12 +441,12 @@ class generate_act_data(read_act_config_data):
 
         # Generate state codes for each account record
         street_adrs[self.adrs_indices_change] = [
-            fake.street_address() for _ in xrange(self.adrs_nbr_change)]
+            fake.street_address() for _ in range(self.adrs_nbr_change)]
 
         # Address city name to fb_address dataset
         self.fb_address[self.street_line1_txt_col] = street_adrs
 
-        print "DONE GENERATING THE STREET ADDRESS."
+        print("DONE GENERATING THE STREET ADDRESS.")
 
     def data(self):
 
@@ -520,8 +520,8 @@ class generate_act_data(read_act_config_data):
         self.comb_act_df = self.comb_act_df[self.seq_col_nm]
 
         # Determine the time taken to generate the account dataset
-        print "Time taken to generate account data: ", \
-            time.time() - start_time, " secs"
+        print("Time taken to generate account data: ", \
+            time.time() - start_time, " secs")
 
 
 if __name__ == '__main__':

@@ -14,6 +14,7 @@ import java.util.*;
 /**
  * AMLSimulator Main class
  */
+@SuppressWarnings("serial")
 public class AMLSim extends ParameterizedPaySim {
 
 	public static final boolean TX_OPT = true;  // Optimized transaction
@@ -31,6 +32,7 @@ public class AMLSim extends ParameterizedPaySim {
 	private ArrayList<String> actions = new ArrayList<>();
 	private BufferedWriter bufWriter;
 	private static long NUM_OF_STEPS = 1;
+	@SuppressWarnings("unused")
 	private int numOfRepeat = 0;
 	private static int currentLoop = 0;
 	public static String logFileName = "";
@@ -55,6 +57,7 @@ public class AMLSim extends ParameterizedPaySim {
 	}
 	
 	//Parse the arguments
+	@SuppressWarnings("unused")
 	public void parseArgs(String[] args){
 		//Parse the arguments given
 		for (int x = 0; x < args.length - 1; x++){
@@ -236,6 +239,7 @@ public class AMLSim extends ParameterizedPaySim {
 		reader.close();
 	}
 
+	@SuppressWarnings("unused")
 	protected void loadTransactionFile(String transactionFile) throws IOException{
 		BufferedReader reader = new BufferedReader(new FileReader(transactionFile));
 		String line = reader.readLine();
@@ -258,6 +262,7 @@ public class AMLSim extends ParameterizedPaySim {
 	}
 
 
+	@SuppressWarnings("resource")
 	protected void loadAlertFile(String alertFile) throws IOException{
 		BufferedReader reader = new BufferedReader(new FileReader(alertFile));
 		String line = reader.readLine();
@@ -416,6 +421,7 @@ public class AMLSim extends ParameterizedPaySim {
 		System.out.println("Simulation name: " + AMLSim.simulatorName);
 	}
 
+	@SuppressWarnings({ "unused", "deprecation" })
 	private double getDoublePrecision(double d) {
 		final int precision = 2;
 		return (new BigDecimal(d)).setScale(precision, BigDecimal.ROUND_HALF_UP).doubleValue();

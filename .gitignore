@@ -43,5 +43,9 @@ outputs/*.txt
 outputs/*.png
 outputs/*.gif
 
+# pycache
+_pycache_
+scripts/_pycache_
+
 #Mac file that stores custom attributes of its containing folder, such as the position of icons or the choice of a background image.
 **/.DS_Store

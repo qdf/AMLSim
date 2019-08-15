@@ -34,23 +34,23 @@ class ip_data(object):
 
         # Read in the country code dataset
         file_nm = "CntryCrncyCDE.csv"
-        self.cntry_cd_data = pd.read_csv(ip_dir_nm+file_nm)
+        self.cntry_cd_data = pd.read_csv(ip_dir_nm+file_nm,encoding="latin-1")
 
         # Read in the Country Santions List
         file_nm = "ctry_sanctions_list.csv"
-        self.cntry_sanctions_data = pd.read_csv(ip_dir_nm+file_nm)
+        self.cntry_sanctions_data = pd.read_csv(ip_dir_nm+file_nm,encoding="latin-1")
 
         # Read in the PEP List
         file_nm = "cust_everypolitician.csv"
-        self.pep_data = pd.read_csv(ip_dir_nm+file_nm)
+        self.pep_data = pd.read_csv(ip_dir_nm+file_nm,encoding="latin-1")
 
         # Read in the OFAC watchlist
         file_nm = "watch_list_entry.csv"
-        self.ofac_wl_data = pd.read_csv(ip_dir_nm+file_nm)
+        self.ofac_wl_data = pd.read_csv(ip_dir_nm+file_nm,encoding="latin-1")
 
         # Read in the Organization dataset
         file_nm = "cust_organization_list.csv"
-        self.org_data = pd.read_csv(ip_dir_nm+file_nm)
+        self.org_data = pd.read_csv(ip_dir_nm+file_nm,encoding="latin-1")
 
 
 if __name__ == '__main__':

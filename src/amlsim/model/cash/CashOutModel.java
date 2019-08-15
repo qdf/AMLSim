@@ -3,15 +3,15 @@ package amlsim.model.cash;
 import amlsim.AMLSim;
 import amlsim.Branch;
 
-import static java.lang.Math.round;
-
 /**
  * Cash-out (withdrawal) model
  */
 public class CashOutModel extends CashModel {
 
-    private static int NORMAL_INTERVAL = 1;
-    private static int FRAUD_INTERVAL = 1;
+    @SuppressWarnings("unused")
+	private static int NORMAL_INTERVAL = 1;
+    @SuppressWarnings("unused")
+	private static int FRAUD_INTERVAL = 1;
     private static float NORMAL_MIN = 10;
     private static float NORMAL_MAX = 100;
     private static float FRAUD_MIN = 10;
