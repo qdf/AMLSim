@@ -10,7 +10,7 @@ sh pipline.sh
 # To Build Docker Container
 Download the docker file within the repo (named Dockerfile), then run this command within that directroy
 ```
-docker build -t amlsim --build-arg BASE_IMAGE_TAG=3.9.0.40 .
+docker build -t amlsim --build-arg BASE_IMAGE_TAG=3.9.1.3 .
 ```
 
 
