@@ -36,13 +36,15 @@ acct_files = [os.path.join(file_path,x) for x in os.listdir(file_path) if "accou
 
 latest_account_csv = max(acct_files,key=os.path.getctime)
 
-copyfile(latest_account_csv, os.path.join(output_dir,latest_account_csv.split(os.sep)[-1].split(" ")[0]+".csv"))
+copyfile(latest_account_csv, os.path.join(output_dir,latest_account_csv.split(os.sep)[-1]))
 
 cust_files = [os.path.join(file_path,x) for x in os.listdir(file_path) if "customer" in x]
 
 latest_cust_csv = max(cust_files,key=os.path.getctime)
 
-copyfile(latest_cust_csv, os.path.join(output_dir,latest_cust_csv.split(os.sep)[-1].split(" ")[0]+".csv"))
+copyfile(latest_cust_csv, os.path.join(output_dir,latest_cust_csv.split(os.sep)[-1]))
+
+copyfile("fi_combined.csv",os.path.join(output_dir,"fi_combined.csv"))
 
 copyfile("transaction_graph.pkl",os.path.join(output_dir,"transaction_graph.pkl"))
 
