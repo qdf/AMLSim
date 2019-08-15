@@ -2,7 +2,7 @@
     "customer_data_filepath":
     {
         "description": "Path to the customer dataset file that was generated.",
-        "value": "../output_datasets/customer_combined_%s.csv"
+        "value": "../output_datasets/customer_combined.csv"
     },
     "customer_data_col_nm":
     {
