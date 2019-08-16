@@ -1,0 +1,48 @@
+{
+    "n_fi":
+        {
+            "description": "number of financial institutions the user wishes to generate.",
+            "value": 5,
+            "distribution": [0.1,0.15,0.2,0.25,0.3]
+        },
+    "fi_data_filepath":
+        {
+            "description": "Path to the output for financial instituion data",
+            "value": "../output_datasets/fi_combined.csv"
+        },
+    "fi_types":
+        {
+            "description": "different types of financial institutions.",
+            "value":
+                {
+                    "BANK":
+                        {
+                            "description": "financial institutions type is bank. Contains the percentage of total financial institutions to assign as banks. Additionally, it also provides the filename of the 'bank' config file.",
+                            "value": 100.0,
+                            "filename": "fi_type_bank_config.json"
+                        }
+                }
+        },
+    "column_names":
+        {
+            "description": "column names of the various financial institutions fields to populate in the DB. The column names must be specified in the same order as they are listed in the DB.",
+            "value":
+            {
+                "fb_fi":
+                    {
+                        "description": "column names associated with the fb_fi table.",
+                        "value": ["fi_id", "fi_name", "fi_type"]
+                    },
+                "fb_bank_customers":
+                    {
+                        "description": "column names associated with the fb_bank_customers table.",
+                        "value": ["fi_id","fi_name","fi_type","customer_id","account_id"]
+                    }
+            }
+        },
+        "account_data_filepath":
+        {
+            "description": "Path to the account dataset file that was generated.",
+            "value": "output_datasets/account_combined.csv"
+        }
+}
