@@ -83,7 +83,7 @@ class TransactionGenerator:
 
     def get_types(type_csv):
       ttypes = list()
-      with open(type_csv, "r") as rf:
+      with open(type_csv, "rt", encoding="latin-1") as rf:
         reader = csv.reader(rf)
         next(reader)
         for row in reader:
@@ -222,7 +222,7 @@ class TransactionGenerator:
                             "BUS", "JURISDICTION","ACCT_TYPE","ACCT_PURPOSE",
                             "ACCT_OPEN"])
 
-    with open(fname, "r") as rf:
+    with open(fname, "rt", encoding="latin-1") as rf:
       reader = csv.reader(rf)
       header = next(reader)
       name2idx = {n:i for i,n in enumerate(header)}
@@ -317,7 +317,7 @@ class TransactionGenerator:
     idx_suspicious = None  # Suspicious flag
     idx_model = None  # Transaction model
 
-    with open(fname, "r") as rf:
+    with open(fname, "rt", encoding="latin-1") as rf:
       reader = csv.reader(rf)
 
       ## Parse header
@@ -379,7 +379,7 @@ class TransactionGenerator:
       in_deg = list()  # In-degree sequence
       out_deg = list()  # Out-degree sequence
       acct_id = list()  # Acct_id sequence
-      with open(deg_csv, "rt") as rf:  # Load in/out-degree sequences from parameter CSV file for each account
+      with open(deg_csv, "rt", encoding="latin-1") as rf:  # Load in/out-degree sequences from parameter CSV file for each account
         reader = csv.DictReader(rf)
         #next(reader)
         for row in reader:
@@ -517,7 +517,7 @@ class TransactionGenerator:
     idx_bene_business = None
     idx_fraud = None
 
-    with open(csv_name, "r") as rf:
+    with open(csv_name, "rt",encoding="latin-1") as rf:
       reader = csv.reader(rf)
 
       ## Parse header
@@ -826,7 +826,7 @@ class TransactionGenerator:
     """Write all account list
     """
     fname = os.path.join(self.output_dir, self.conf.get("OutputFile", "accounts"))
-    with open(fname, "w") as wf:
+    with open(fname, "wt", encoding="latin-1") as wf:
       writer = csv.writer(wf)
       # base_attrs = ["ACCOUNT_ID", "CUSTOMER_ID", "INIT_BALANCE", "START_DATE", "END_DATE", "COUNTRY", "ACCOUNT_TYPE", "IS_SUSPICIOUS", "IS_FRAUD", "TX_BEHAVIOR_ID"]
       base_attrs = ["ACCOUNT_ID", "CUSTOMER_ID", "INIT_BALANCE", "COUNTRY", "ACCOUNT_TYPE", "IS_FRAUD", "TX_BEHAVIOR_ID"]
@@ -853,7 +853,7 @@ class TransactionGenerator:
 
   def write_transaction_list(self):
     fname = os.path.join(self.output_dir, self.conf.get("OutputFile", "transactions"))
-    with open(fname, "w") as wf:
+    with open(fname, "wt", encoding="latin-1") as wf:
       writer = csv.writer(wf)
       writer.writerow(["id", "src", "dst", "ttype"])
       for e in self.g.edges(data=True, keys=True):
@@ -873,7 +873,7 @@ class TransactionGenerator:
       return [v for k, v in nx.get_edge_attributes(g, name).items() if (k[0] == vid or k[1] == vid)]
 
     fname = os.path.join(self.output_dir, self.conf.get("OutputFile", "alert_members"))
-    with open(fname, "w") as wf:
+    with open(fname, "wt", encoding="latin-1") as wf:
       writer = csv.writer(wf)
       base_attrs = ["alertID", "reason", "clientID", "isSubject", "modelID", "minAmount", "maxAmount", "startStep", "endStep", "scheduleID"]
       writer.writerow(base_attrs + self.attr_names)

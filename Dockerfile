@@ -23,12 +23,13 @@ RUN sudo yum update -y && sudo yum install -y \
         zip \
         zlib1g-dev
 
-RUN scl enable rh-python36 bash && python --version
+RUN sudo ln -fs /usr/bin/python3.6 /usr/bin/python && \
+   sudo ln -fs /usr/bin/pip3.6 /usr/bin/pip
 
 RUN python --version
 
 RUN sudo curl -fSsL -O https://bootstrap.pypa.io/get-pip.py && \
-    sudo python3 get-pip.py && \
+    sudo python get-pip.py && \
     rm get-pip.py
 
 RUN sudo pip3 install \

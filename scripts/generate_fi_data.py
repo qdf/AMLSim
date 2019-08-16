@@ -13,7 +13,7 @@ from fractions import gcd
 import json
 import uuid
 
-from tabulate import tabulate
+#from tabulate import tabulate
 
 import numpy as np
 # import modin.pandas as pd
