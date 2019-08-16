@@ -32,12 +32,12 @@ RUN sudo curl -fSsL -O https://bootstrap.pypa.io/get-pip.py && \
     sudo python get-pip.py && \
     rm get-pip.py
 
-RUN sudo pip3 install \
-        numpy==1.14.3 \
-        pandas==0.23.0 \
-        dill==0.2.7.1 \
-        scipy==1.0.0 \
-        networkx==1.10 \
+RUN sudo pip install \
+        numpy==1.16.4 \
+        pandas==0.25.0 \
+        dill==0.3.0 \
+        scipy==1.3.0 \
+        networkx==2.3 \
         faker==2.0.0 \
         barnum==0.5.1 \
         configparser==3.7.4
