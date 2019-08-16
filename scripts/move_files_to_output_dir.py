@@ -71,7 +71,9 @@ print("DONE")
 print("TRANFERRING BENIFACTOR ID TO TX LOG")
 tx_data["ben_cust_id"] = tx_data.apply(lambda row : acct_cust_dict[row["nameOrig"]]["ben_cust_id"],axis=1)
 print("DONE")
-
+print("DATESTAMP GENERATION")
+tx_data["Date"] = tx_data.apply(lambda row : date_map[row["step"]],axis=1)
+print("DONE")
 #new_wire_tx = pd.DataFrame(columns=[
 #            "orig_nm",
 #            "orig_cust_id",

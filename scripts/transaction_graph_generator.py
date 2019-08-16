@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from configparser import ConfigParser
 import networkx as nx
 import numpy as np
