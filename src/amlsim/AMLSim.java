@@ -441,6 +441,11 @@ public class AMLSim extends ParameterizedPaySim {
 		float destBefore = (float)dest.getBalance();
 		dest.deposit(amt);
 		float destAfter = (float)dest.getBalance();
+		
+		// if (origBefore <= amt){
+		// origAfter = origBefore
+		// destAfter = destBefore
+		//}
 
 		txs.addTransaction(step, desc, amt, origID, destID, origBefore, origAfter, destBefore, destAfter, fraud, aid);
 		if(diameter != null)diameter.addEdge(origID, destID);
