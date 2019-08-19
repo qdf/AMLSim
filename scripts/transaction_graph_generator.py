@@ -591,6 +591,7 @@ class TransactionGenerator:
         # members = self.get_account_vertices(accounts)
         for i in range(num):
           ## Add alert patterns
+          
           self.add_alert_pattern(is_fraud, pattern_type, accounts, scheduleID, individual_amount, aggregated_amount, transaction_count,
                                  amount_difference, period, amount_rounded, orig_country, bene_country, orig_business, bene_business)
           count += 1
@@ -640,12 +641,19 @@ class TransactionGenerator:
       end_day = start_day + period
 
 
+    aggregated_amount = aggregated_amount*np.random.power(56)
+    individual_amount = individual_amount*np.random.power(56)
+
+
     ## Create subgraph structure with transaction attributes
     modelID = self.alert_types[pattern_type]  ## alert model ID
     sub_g = nx.MultiDiGraph(modelID=modelID, reason=pattern_type, scheduleID=scheduleID, start=start_day, end=end_day)  # Transaction subgraph for an alert
     num_members = len(members)  # Number of accounts
     total_amount = 0
     transaction_count = 0
+    #removing all previpously generated edges in the subgraph from both the graph and the subgraph
+    self.g.remove_edges_from(list(sub_g.edges()))
+    sub_g.remove_edges_from(list(sub_g.edges()))
 
     if pattern_type == "fan_in":  # fan_in pattern (multiple accounts --> single (subject) account)
       src_list = [n for n in members if n != subject]
@@ -686,8 +694,8 @@ class TransactionGenerator:
 
 
     elif pattern_type == "bipartite":  # bipartite (some accounts --> other accounts)
-      src_list = members[:(num_members/2)]  # The first half members are source accounts
-      dst_list = members[(num_members/2):]  # The last half members are destination accounts
+      src_list = members[:int(num_members/2)]  # The first half members are source accounts
+      dst_list = members[int(num_members/2):]  # The last half members are destination accounts
 
       if transaction_freq is None:  # Number of transactions
         transaction_freq = len(src_list) * len(dst_list)
@@ -742,9 +750,9 @@ class TransactionGenerator:
 
 
     elif pattern_type == "stack":  # two dense bipartite layers
-      src_list = members[:num_members/3]  # First 1/3 of members are source accounts
-      mid_list = members[num_members/3:num_members*2/3]  # Second 1/3 of members are intermediate accounts
-      dst_list = members[num_members*2/3:]  # Last 1/3 of members are destination accounts
+      src_list = members[:int(num_members/3)]  # First 1/3 of members are source accounts
+      mid_list = members[int(num_members/3):int(num_members*2/3)]  # Second 1/3 of members are intermediate accounts
+      dst_list = members[int(num_members*2/3):]  # Last 1/3 of members are destination accounts
 
       if transaction_freq is None:  # Total number of transactions
         transaction_freq = len(src_list) * len(mid_list) + len(mid_list) * len(dst_list)
