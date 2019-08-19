@@ -332,7 +332,10 @@ Conducts a series of fraud transactions between three sets of accounts. The firs
    - In the __init__(...) function, add the new alert name and model ID to the self.alert_types dictionary
    - In the add_alert_pattern(...) function, build the subgraph within the add_alert_pattern function, first add a conditional with pattern_type == "<type_name>", then construct a subgraph in a similar fashion to existing pattern types (fan_in, fan_out, and bipartite are good simple examples, look at dense, mixed, stack, and cycle for more complex examples).
    
-6. *Done!*
+6. ### In the file *generate_alert_patterns.py*:
+    Add the new alert name and model ID to the self.alert_types dictionary
+
+7. *Done!*
    
 
 ---
