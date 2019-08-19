@@ -4,6 +4,8 @@ python scripts/generate_customer_data.py
 python scripts/generate_account_data.py
 python scripts/generate_fi_data.py
 
+python scripts/generate_alert_patterns.py
+
 python scripts/convert_generated_accounts_to_aml_accounts.py
 python scripts/generate_network_in_and_out_degrees.py
 
