@@ -335,7 +335,10 @@ Conducts a series of fraud transactions between three sets of accounts. The firs
 6. ### In the file *generate_alert_patterns.py*:
     Add the new alert name and model ID to the self.alert_types dictionary
 
-7. *Done!*
+7. ### In the file *alertPatterns.csv*  (in paramFiles folder):
+    Add the new alert name and other details  
+
+8. *Done!*
    
 
 ---
