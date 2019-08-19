@@ -42,6 +42,7 @@ outputs/*/
 outputs/*.txt
 outputs/*.png
 outputs/*.gif
+paramFiles/*.csv
 
 # pycache
 _pycache_
