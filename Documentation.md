@@ -403,6 +403,9 @@ Found hard coded values:
     * One possible alteration is that of making the graph have higher levels of assortativity (meaning nodes form connections with those of similar types), one method to explore is if highly connected nodes are more likely to be connected with each other or is it more of an authority and hub situation with nodes that are disproportionally transferring in vs transferring out (and vice versa). Network logic is important if we want better accuracy, otherwise we are only mapping to random noise... 
     * Another concern is that should we allow parallel edges or self loops (which both are allowed using the directed_configuration_model). 
     
+## Known Bugs
+The stack typology might have extra edges amongst the source nodes and/or source and intermediate nodes.
+    
 ## Project Ideas
 
 * Need to decern random from non-random processes. Can use this simulator as a testing ground as we have random processes vs non-random. 
