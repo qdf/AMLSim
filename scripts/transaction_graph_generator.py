@@ -910,6 +910,7 @@ class TransactionGenerator:
   def write_graph(self):
     with open("transaction_graph.pkl","wb") as f_p:
         pickle.dump(self.g,f_p)
+    nx.write_edgelist(self.g,"transaction_graph_edgelist.txt",data=False)
 
 
 if __name__ == "__main__":
