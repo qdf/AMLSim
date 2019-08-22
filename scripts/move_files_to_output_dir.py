@@ -48,6 +48,8 @@ copyfile(os.path.join(file_path,"fi_combined.csv"),os.path.join(output_dir,"fi_c
 
 copyfile("transaction_graph.pkl",os.path.join(output_dir,"transaction_graph.pkl"))
 
+copyfile("transaction_graph_edgelist.txt",os.path.join(output_dir,"transaction_graph_edgelist.txt"))
+
 acct_data = pd.read_csv(latest_account_csv)
 
 tx_data = pd.read_csv(os.path.join(output_dir,"cust_acct_tx_generation_log.csv"))
